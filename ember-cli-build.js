@@ -8,6 +8,12 @@ module.exports = function(defaults) {
     // Add options here
   });
 
+  // Import FusionCharts library
+  app.import('bower_components/fusioncharts/fusioncharts.js');
+  app.import('bower_components/fusioncharts/fusioncharts.charts.js');
+  app.import('bower_components/fusioncharts/themes/fusioncharts.theme.fint.js');
+  app.import('bower_components/fusioncharts/themes/fusioncharts.theme.ocean.js');
+
   /*
     This build file specifies the options for the dummy test app of this
     addon, located in `/tests/dummy`
