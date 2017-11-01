@@ -9,19 +9,18 @@ A lightweight EmberJS component which provides bindings for FusionCharts JavaScr
 
 To install `ember-fusioncharts` to any existing ember project, run:
 
-For Modern Ember CLI versions:
+For Modern Ember CLI:
 ```bash
 $ ember install ember-fusioncharts
 ```
 
-For Earlier Ember CLI versions (and addon developers):
+For Earlier Ember CLI (and addon developers):
 ```bash
 $ npm install ember-fusioncharts --save-dev
 $ ember g ember-fusioncharts
 ```
 
 Then import `fusioncharts` library to your `ember-cli-build.js` build file:
-
 ```javascript
 /* eslint-env node */
 'use strict';
@@ -59,102 +58,74 @@ module.exports = function(defaults) {
 
 ## Getting Started
 
-After installing `angular4-fusioncharts`, import it in your Angular `AppModule`:
-
-```typescript
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import * as FusionCharts from 'fusioncharts';
-import * as Charts from 'fusioncharts/fusioncharts.charts';
-import * as FintTheme from 'fusioncharts/themes/fusioncharts.theme.fint';
-
-import { AppComponent } from './app.component';
-import { FusionChartsModule } from 'angular4-fusioncharts';
-
-@NgModule({
-    declarations: [
-        AppComponent
-    ],
-    imports: [
-        BrowserModule,
-        FusionChartsModule.forRoot(FusionCharts, Charts, FintTheme)
-    ],
-    providers: [],
-    bootstrap: [AppComponent]
-})
-export class AppModule { }
+After installing `ember-fusioncharts`, create a simple component(e.g. `chart-viewer`, also you can use it anywhere in your application) to show your interactive charts, run:
+```bash
+$ ember g component chart-viewer
 ```
 
-Once the library is imported, you can use this component in your Angular application:
+Write your chart logic in `chart-viewer.js` file:
+```javascript
+import Component from '@ember/component';
 
-In your Angular `AppComponent`:
-
-```typescript
-import { Component } from '@angular/core';
-
-@Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
-})
-export class AppComponent {
-    id = 'chart1';
-    width = 600;
-    height = 400;
-    type = 'column2d';
-    dataFormat = 'json';
-    dataSource;
-    title = 'Angular4 FusionCharts Sample';
-
-    constructor() {
-        this.dataSource = {
-            "chart": {
-                "caption": "Harry's SuperMart",
-                "subCaption": "Top 5 stores in last month by revenue",
-                "numberprefix": "$",
-                "theme": "fint"
-            },
-            "data": [
-                {
-                    "label": "Bakersfield Central",
-                    "value": "880000"
-                },
-                {
-                    "label": "Garden Groove harbour",
-                    "value": "730000"
-                },
-                {
-                    "label": "Los Angeles Topanga",
-                    "value": "590000"
-                },
-                {
-                    "label": "Compton-Rancho Dom",
-                    "value": "520000"
-                },
-                {
-                    "label": "Daly City Serramonte",
-                    "value": "330000"
-                }
-            ]
+const myDataSource = {
+    "chart": {
+        "caption": "Harry's SuperMart",
+        "subCaption": "Top 5 stores in last month by revenue",
+        "numberPrefix": "$",
+        "theme": "fint"
+    },
+    "data": [
+        {
+            "label": "Bakersfield Central",
+            "value": "880000"
+        },
+        {
+            "label": "Garden Groove harbour",
+            "value": "730000"
+        },
+        {
+            "label": "Los Angeles Topanga",
+            "value": "590000"
+        },
+        {
+            "label": "Compton-Rancho Dom",
+            "value": "520000"
+        },
+        {
+            "label": "Daly City Serramonte",
+            "value": "330000"
         }
-    }
-}
+    ]
+};
+
+export default Component.extend({
+    title: 'My Ember charts',
+    width: 600,
+    height: 400,
+    type: 'column2d',
+    dataFormat: 'json',
+    dataSource: myDataSource
+});
 ```
 
-Now, You can use `<fusioncharts>` component in your `app.component.html` template:
+And use `fusioncharts-xt` component in your `chart-viewer.hbs` template to show your charts:
+```html
+<h1>{{ title }}</h1>
+
+{{fusioncharts-xt
+    width=width
+    height=height
+    type=type
+    dataFormat=dataFormat
+    dataSource=dataSource}}
+```
+
+Then, use `chart-viewer` component in your `application.hbs` template:
 
 ```html
-<h1>
-  {{title}}
-</h1>
-<fusioncharts
-    [id]="id"
-    [width]="width"
-    [height]="height"
-    [type]="type"
-    [dataFormat]="dataFormat"
-    [dataSource]="dataSource"
-></fusioncharts>
+{{chart-viewer}}
+
+{{outlet}}
 ```
 
 ## Test
