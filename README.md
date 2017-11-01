@@ -3,20 +3,18 @@
 
 # Ember-Fusioncharts
 
-A lightweight EmberJS component which provides bindings for FusionCharts JavaScript Charting Library. It easily adds rich and interactive charts to any ambitious Ember applications.
+A lightweight EmberJS component which provides bindings for FusionCharts JavaScript Charting Library. It easily adds rich and interactive charts to any ambitious Ember application.
 
 ## Installation
 
-To install `ember-fusioncharts` to any existing ember application, run:
+To install `ember-fusioncharts` to any existing ember project, run:
 
-For Modern CLI versions
-
+For Modern Ember CLI versions:
 ```bash
 $ ember install ember-fusioncharts
 ```
 
-For Earlier CLI versions (and addon developers)
-
+For Earlier Ember CLI versions (and addon developers):
 ```bash
 $ npm install ember-fusioncharts --save-dev
 $ ember g ember-fusioncharts
