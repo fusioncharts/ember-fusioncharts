@@ -1,73 +1,76 @@
 {
-  "name": "ember-fusioncharts",
-  "version": "1.0.0-rc.1",
-  "description": "EmberJS bindings for FusionCharts Charting library",
-  "keywords": [
-    "ember-addon",
-    "fusioncharts",
-    "bindings",
-    "wrapper",
-    "fusioncharts-wrapper"
-  ],
-  "license": "MIT",
-  "author": {
-    "name": "FusionCharts",
-    "email": "support@fusioncharts.com"
-  },
-  "contributors": [
-    {
-      "name": "Rousan Ali",
-      "email": "rousan@fusioncharts.com",
-      "url": "https://github.com/ariyankhan"
+    "name": "ember-fusioncharts",
+    "version": "1.0.0-rc.1",
+    "description": "EmberJS bindings for FusionCharts Charting library",
+    "keywords": [
+        "ember-addon",
+        "fusioncharts",
+        "bindings",
+        "wrapper",
+        "fusioncharts-wrapper"
+    ],
+    "license": "MIT",
+    "author": {
+        "name": "FusionCharts",
+        "email": "support@fusioncharts.com"
     },
-    {
-      "name": "Subrata Mal",
-      "email": "subrata@fusioncharts.com",
-      "url": "https://github.com/subratamal"
+    "contributors": [
+        {
+            "name": "Rousan Ali",
+            "email": "rousan@fusioncharts.com",
+            "url": "https://github.com/ariyankhan"
+        },
+        {
+            "name": "Subrata Mal",
+            "email": "subrata@fusioncharts.com",
+            "url": "https://github.com/subratamal"
+        }
+    ],
+    "directories": {
+        "doc": "doc",
+        "test": "tests"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/fusioncharts/ember-fusioncharts"
+    },
+    "bugs": {
+        "url": "https://github.com/fusioncharts/ember-fusioncharts/issues"
+    },
+    "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "test": "ember test"
+    },
+    "dependencies": {
+        "ember-cli-babel": "^6.6.0",
+        "ember-cli-htmlbars": "^2.0.1",
+        "ember-cli-node-assets": "^0.2.2"
+    },
+    "devDependencies": {
+        "broccoli-asset-rev": "^2.4.5",
+        "ember-ajax": "^3.0.0",
+        "ember-cli": "~2.16.2",
+        "ember-cli-dependency-checker": "^2.0.0",
+        "ember-cli-eslint": "^4.0.0",
+        "ember-cli-htmlbars-inline-precompile": "^1.0.0",
+        "ember-cli-inject-live-reload": "^1.4.1",
+        "ember-cli-qunit": "^4.0.0",
+        "ember-cli-release": "^0.2.9",
+        "ember-cli-shims": "^1.1.0",
+        "ember-cli-sri": "^2.1.0",
+        "ember-cli-uglify": "^2.0.0",
+        "ember-disable-prototype-extensions": "^1.1.2",
+        "ember-export-application-global": "^2.0.0",
+        "ember-load-initializers": "^1.0.0",
+        "ember-resolver": "^4.0.0",
+        "ember-source": "~2.16.0",
+        "loader.js": "^4.2.3"
+    },
+    "engines": {
+        "node": "^4.5 || 6.* || >= 7.*"
+    },
+    "ember-addon": {
+        "configPath": "tests/dummy/config"
     }
-  ],
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/fusioncharts/ember-fusioncharts"
-  },
-  "scripts": {
-    "build": "ember build",
-    "start": "ember server",
-    "test": "ember test"
-  },
-  "dependencies": {
-    "ember-cli-babel": "^6.6.0",
-    "ember-cli-htmlbars": "^2.0.1",
-    "ember-cli-node-assets": "^0.2.2"
-  },
-  "devDependencies": {
-    "broccoli-asset-rev": "^2.4.5",
-    "ember-ajax": "^3.0.0",
-    "ember-cli": "~2.16.2",
-    "ember-cli-dependency-checker": "^2.0.0",
-    "ember-cli-eslint": "^4.0.0",
-    "ember-cli-htmlbars-inline-precompile": "^1.0.0",
-    "ember-cli-inject-live-reload": "^1.4.1",
-    "ember-cli-qunit": "^4.0.0",
-    "ember-cli-release": "^0.2.9",
-    "ember-cli-shims": "^1.1.0",
-    "ember-cli-sri": "^2.1.0",
-    "ember-cli-uglify": "^2.0.0",
-    "ember-disable-prototype-extensions": "^1.1.2",
-    "ember-export-application-global": "^2.0.0",
-    "ember-load-initializers": "^1.0.0",
-    "ember-resolver": "^4.0.0",
-    "ember-source": "~2.16.0",
-    "loader.js": "^4.2.3"
-  },
-  "engines": {
-    "node": "^4.5 || 6.* || >= 7.*"
-  },
-  "ember-addon": {
-    "configPath": "tests/dummy/config"
-  }
 }

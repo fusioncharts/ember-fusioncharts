@@ -1,36 +1,36 @@
 {
-  "name": "ember-fusioncharts",
-  "description": "EmberJS bindings for FusionCharts Charting library",
-  "main": "index.js",
-  "authors": [
-    {
-      "name": "Rousan Ali",
-      "email": "rousan@fusioncharts.com",
-      "url": "https://github.com/ariyankhan"
-    },
-    {
-      "name": "Subrata Mal",
-      "email": "subrata@fusioncharts.com",
-      "url": "https://github.com/subratamal"
+    "name": "ember-fusioncharts",
+    "description": "EmberJS bindings for FusionCharts Charting library",
+    "main": "index.js",
+    "authors": [
+        {
+            "name": "Rousan Ali",
+            "email": "rousan@fusioncharts.com",
+            "url": "https://github.com/ariyankhan"
+        },
+        {
+            "name": "Subrata Mal",
+            "email": "subrata@fusioncharts.com",
+            "url": "https://github.com/subratamal"
+        }
+    ],
+    "license": "MIT",
+    "keywords": [
+        "ember-addon",
+        "fusioncharts",
+        "bindings",
+        "wrapper",
+        "fusioncharts-wrapper"
+    ],
+    "homepage": "https://github.com/fusioncharts/ember-fusioncharts",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "devDependencies": {
+        "fusioncharts": "^3.12.2"
     }
-  ],
-  "license": "MIT",
-  "keywords": [
-    "ember-addon",
-    "fusioncharts",
-    "bindings",
-    "wrapper",
-    "fusioncharts-wrapper"
-  ],
-  "homepage": "https://github.com/fusioncharts/ember-fusioncharts",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "devDependencies": {
-    "fusioncharts": "^3.12.2"
-  }
 }
