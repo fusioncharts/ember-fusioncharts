@@ -3,5 +3,5 @@
 
 module.exports = {
     name: 'ember-fusioncharts',
-    description: 'A EmberJS binding for FusionCharts Charting library'
+    description: 'A lightweight EmberJS component which provides bindings for FusionCharts JavaScript Charting Library'
 };
