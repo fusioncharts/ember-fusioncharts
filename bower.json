@@ -1,6 +1,6 @@
 {
     "name": "ember-fusioncharts",
-    "description": "EmberJS bindings for FusionCharts Charting library",
+    "description": "A lightweight EmberJS component which provides bindings for FusionCharts JavaScript Charting Library",
     "main": "index.js",
     "authors": [
         {
