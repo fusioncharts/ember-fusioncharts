@@ -99,7 +99,7 @@ const myDataSource = {
 };
 
 export default Component.extend({
-    title: 'My Ember charts',
+    title: 'Ember FusionCharts Sample',
     width: 600,
     height: 400,
     type: 'column2d',
@@ -131,43 +131,26 @@ Then, use `chart-viewer` component in your `application.hbs` template:
 ## Test
 
 ```sh
-$ npm run test
-
-$ npm run test:unit
-
-$ npm run test:e2e
+$ npm test
 ```
 
 ## Contributing
 
 * Clone the repository.
-* Install dependencies
+* Install dependencies.
 * Run `npm start` to start the dev server.
 * Open `http://localhost:4200/` in your browser.
 
 ```sh
-$ git clone https://github.com/fusioncharts/angular4-fusioncharts.git
-$ cd angular4-fusioncharts
-$ npm i
+$ git clone https://github.com/fusioncharts/ember-fusioncharts.git
+$ cd ember-fusioncharts
+$ npm i && bower install
 $ npm start
 ```
 
-To generate all *.js, *.d.ts and *.js.map files:
-
-```sh
-$ npm run transpile
-```
-
-To lint all *.ts files:
-
-```sh
-$ npm run lint
-```
-
 To build, run:
-
 ```sh
 $ npm run build
 ```
 
-### [Demos and Documentation](https://fusioncharts.github.io/angular4-fusioncharts/) 
+### [Demos and Documentation](https://fusioncharts.github.io/ember-fusioncharts/)
