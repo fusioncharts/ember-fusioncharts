@@ -6,7 +6,6 @@
 .tmp
 /build
 /coverage
-/dist
 
 # dependencies
 /node_modules
