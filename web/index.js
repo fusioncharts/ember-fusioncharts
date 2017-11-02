@@ -33,7 +33,13 @@ const utils = (function () {
         return JSON.parse(JSON.stringify(obj));
     }
 
-    return { isObject, isCallable, isSameObjectContent, isUndefined, deepCopyOf };
+    return {
+        isObject: isObject,
+        isCallable: isCallable,
+        isSameObjectContent: isSameObjectContent,
+        isUndefined: isUndefined,
+        deepCopyOf: deepCopyOf
+    };
 })();
 
 const fusonChartsOptions = [
