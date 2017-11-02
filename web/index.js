@@ -94,8 +94,8 @@ const fusonChartsOptions = [
     'loadMessageImageScale'
 ];
 
-/* global App, Ember */
-App.FusionchartsXtComponent = Ember.Component.extend({
+/* global Ember */
+window.FusionchartsXtComponent = Ember.Component.extend({
     tag: 'div',
     chartObj: null,
     oldOptions: null,
