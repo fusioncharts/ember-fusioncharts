@@ -95,7 +95,9 @@ const fusonChartsOptions = [
 ];
 
 /* global Ember */
-window.FusionchartsXtComponent = Ember.Component.extend({
+var App = Ember.Application.create();
+
+App.FusionchartsXtComponent = Ember.Component.extend({
     tag: 'div',
     chartObj: null,
     oldOptions: null,
