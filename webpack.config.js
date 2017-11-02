@@ -1,16 +1,12 @@
 /* eslint-env node */
 const path = require('path');
-const webpack = require("webpack");
 
 module.exports = {
     entry: './web/index.js',
     output: {
-        path: path.resolve(__dirname, 'web'),
-        filename: "index.min.js"
+        path: path.resolve(__dirname, 'web', 'dist'),
+        filename: "index.js"
     },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin({ minimize: true })
-    ],
     module: {
         loaders: [
             {
