@@ -209,15 +209,12 @@ export default Component.extend({
 
     renderChart() {
         const currentOptions = this.getCurrentOptions();
-        let chartObj = this.get('chartObj');
-
         currentOptions.renderAt = this.get('chartContainer');
 
-        if (chartObj && chartObj.dispose) { chartObj.dispose(); }
-        chartObj = this.newFusionChartsInstance(currentOptions);
+        const chartObj = this.newFusionChartsInstance(currentOptions);
         this.set('chartObj', chartObj);
         chartObj.render();
-    },
+    }, 
 
     getCurrentOptions() {
         const chartConfig = this.get('chartConfig') ? this.get("chartConfig") : {};
