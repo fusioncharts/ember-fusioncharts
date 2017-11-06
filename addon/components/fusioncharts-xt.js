@@ -60,18 +60,20 @@ export default Component.extend({
         const currHeight = currentOptions.height;
         const oldWidth = oldOptions.width;
         const oldHeight = oldOptions.height;
+        
+        const chartObj = this.get('chartObj');
 
         if (String(currWidth) !== String(oldWidth) || String(currHeight) !== String(oldHeight)) {
             if (!utils.isUndefined(currWidth) && !utils.isUndefined(currHeight)) {
-                this.get('chartObj').resizeTo(currWidth, currHeight);
+                chartObj.resizeTo(currWidth, currHeight);
             } else {
                 if (!utils.isUndefined(currWidth)) {
-                    this.get('chartObj').resizeTo({
+                    chartObj.resizeTo({
                         w: currWidth
                     });
                 }
                 if (!utils.isUndefined(currHeight)) {
-                    this.get('chartObj').resizeTo({
+                    chartObj.resizeTo({
                         h: currHeight
                     });
                 }
@@ -96,16 +98,18 @@ export default Component.extend({
         const oldDataFormat = oldOptions.dataFormat;
         const oldData = oldOptions.dataSource;
 
+        const chartObj = this.get('chartObj');
+
         if (String(currDataFormat).toLowerCase() !== String(oldDataFormat).toLowerCase()) {
             if (!utils.isUndefined(currDataFormat) && !utils.isUndefined(currData)) {
-                this.get('chartObj').setChartData(currData, String(currDataFormat).toLowerCase());
+                chartObj.setChartData(currData, String(currDataFormat).toLowerCase());
                 // If the chart dataFormat is changed then
                 // animate the chart to show the changes
-                this.get('chartObj').render();
+                chartObj.render();
             }
         } else if (!this.isSameChartData(currData, oldData)) {
             if (!utils.isUndefined(currData)) {
-                this.get('chartObj').setChartData(
+                chartObj.setChartData(
                     currData,
                     // When dataFormat is not given, but data is changed,
                     // then use 'json' as default dataFormat
@@ -128,6 +132,8 @@ export default Component.extend({
         const oldEvents = oldOptions.events;
         let temp1, temp2;
 
+        const chartObj = this.get('chartObj');
+
         if (this.detectChartEventsChange(currEvents, oldEvents)) {
             if (!utils.isUndefined(currEvents)) {
                 temp1 = Object.assign({}, currEvents);
@@ -136,12 +142,12 @@ export default Component.extend({
                     if (temp2[eventName] === temp1[eventName]) {
                         temp1[eventName] = undefined;
                     } else {
-                        this.get('chartObj').removeEventListener(eventName, temp2[eventName]);
+                        chartObj.removeEventListener(eventName, temp2[eventName]);
                     }
                 });
                 Object.keys(temp1).forEach((eventName) => {
                     if (temp1[eventName]) {
-                        this.get('chartObj').addEventListener(eventName, temp1[eventName]);
+                        chartObj.addEventListener(eventName, temp1[eventName]);
                     }
                 });
             }
@@ -170,20 +176,22 @@ export default Component.extend({
 
     checkAndUpdateRestOptions(restOptions, currentOptions, oldOptions) {
         let optionsUpdated = false;
+        const chartObj = this.get('chartObj');
+
         restOptions.forEach((optionName) => {
             const currValue = currentOptions[optionName];
             const oldValue = oldOptions[optionName];
             if (!this.isSameOptionValue(currValue, oldValue)) {
                 if (!utils.isUndefined(currValue)) {
-                    if (this.get('chartObj').options && this.get('chartObj').options.hasOwnProperty(optionName)) {
-                        this.get('chartObj').options[optionName] = currValue;
+                    if (chartObj.options && chartObj.options.hasOwnProperty(optionName)) {
+                        chartObj.options[optionName] = currValue;
                         optionsUpdated = true;
                     }
                 }
             }
         });
         if (optionsUpdated) {
-            this.get('chartObj').render(); // re-render the chart to reflect the changes
+            chartObj.render(); // re-render the chart to reflect the changes
         } 
     },
 
@@ -201,14 +209,12 @@ export default Component.extend({
 
     renderChart() {
         const currentOptions = this.getCurrentOptions();
-        const chartObj = this.get('chartObj');
-
         currentOptions.renderAt = this.get('chartContainer');
 
-        if (chartObj && chartObj.dispose) { chartObj.dispose(); }
-        this.set('chartObj', this.newFusionChartsInstance(currentOptions));
-        this.get('chartObj').render();
-    },
+        const chartObj = this.newFusionChartsInstance(currentOptions);
+        this.set('chartObj', chartObj);
+        chartObj.render();
+    }, 
 
     getCurrentOptions() {
         const chartConfig = this.get('chartConfig') ? this.get("chartConfig") : {};
