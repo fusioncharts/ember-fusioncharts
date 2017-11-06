@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# Ember-Fusioncharts
-EmberJS bindings for FusionCharts Charting library
-=======
 
 #### [Demos and Documentation](https://fusioncharts.github.io/ember-fusioncharts/)
 
@@ -158,4 +154,3 @@ $ npm run build
 ```
 
 ### [Demos and Documentation](https://fusioncharts.github.io/ember-fusioncharts/)
->>>>>>> release/1.0.0-rc.1
