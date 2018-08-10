@@ -1,7 +1,7 @@
 
 #### [Demos and Documentation](https://fusioncharts.github.io/ember-fusioncharts/)
 
-# Ember-Fusioncharts
+# Ember-FusionCharts
 
 A lightweight EmberJS component which provides bindings for FusionCharts JavaScript Charting Library. It easily adds rich and interactive charts to any ambitious Ember application.
 
@@ -33,10 +33,10 @@ module.exports = function(defaults) {
   });
 
   // Import fusioncharts library
-  app.import('bower_components/fusioncharts/fusioncharts.js');
-  app.import('bower_components/fusioncharts/fusioncharts.charts.js');
-  app.import('bower_components/fusioncharts/themes/fusioncharts.theme.fint.js');
-  app.import('bower_components/fusioncharts/themes/fusioncharts.theme.ocean.js');
+  app.import('node_modules/fusioncharts/fusioncharts.js');
+  app.import('node_modules/fusioncharts/fusioncharts.charts.js');
+  app.import('node_modules/fusioncharts/themes/fusioncharts.theme.fint.js');
+  app.import('node_modules/fusioncharts/themes/fusioncharts.theme.ocean.js');
 
   // Use `app.import` to add additional libraries to the generated
   // output files.
@@ -144,7 +144,7 @@ $ npm test
 ```sh
 $ git clone https://github.com/fusioncharts/ember-fusioncharts.git
 $ cd ember-fusioncharts
-$ npm i && bower install
+$ npm install
 $ npm start
 ```
 
