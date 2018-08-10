@@ -1,23 +1,425 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,shrink-to-fit=no">
-      <title></title>
-      <link rel="shortcut icon" href="favicon.ico">
-      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
-      <link rel="stylesheet" type="text/css" href="css/main.css" />
-      <link rel="stylesheet" type="text/css" href="css/quick-start.css" />
-      <link rel="stylesheet" type="text/css" href="css/slick.min.css" />
-      <link rel="stylesheet" type="text/css" href="css/slick-theme.min.css" />
-      <link rel="stylesheet" type="text/css" href="css/prism.css" />
-      <script type="text/javascript" src="js/fetch.js"></script>
-   </head>
 
-   <body>
-      <noscript>You need to enable JavaScript to run this app.</noscript>
-      <div id="root"></div>
-      <script type="text/javascript" src="app.config.js"></script>
-      <script type="text/javascript" src="js/main.js"></script>
-   </body>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="./favicon.ico">
+    <!-- CSS Resources -->
+    <link rel="stylesheet" href="//s3-eu-west-1.amazonaws.com/fcdesignsystem/1.0.0/css/fusionDesign.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/codemirror.css">
+    <link rel="stylesheet" href="./assets/css/dracula.css">
+
+    <!-- JS Resources -->
+    <script src="//s3-eu-west-1.amazonaws.com/fcdesignsystem/1.0.0/js/fusionDesign.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.2/codemirror.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.2/addon/mode/multiplex.min.js"></script>
+    <script src="./assets/scripts/javascript.min.js"></script>
+    <script src="./assets/scripts/xml.js"></script>
+    <script src="./assets/scripts/htmlembedded.js"></script>
+    <title>Ember FusionCharts</title>
+
+    <!-- Extra resources for demo purpose (can be removed) -->
+    <!-- <script src="//static.fusioncharts.com/code/latest/fusioncharts.js"></script> -->
+    <!-- <script src="//csm.fusioncharts.com/files/assets/fusion-theme/fusioncharts.theme.fusion.js"></script> -->
+    <link rel="stylesheet" href="//csm.fusioncharts.com/files/assets/fusion-theme/fusioncharts.theme.fusion.css">
+    <!-- <script src="./assets/scripts/dummy.js"></script> -->
+</head>
+
+<body>
+    <div id="app">
+        <!-- navbar start -->
+        <nav id="navbar" class="navbar navbar-light navbar-expand-lg bg-light">
+            <!-- logo -->
+            <a href="https://www.fusioncharts.com" target="_blank" class="navbar-brand active">
+                <img src="./assets/images/fc-logo.svg" width="149" height="27" alt="FusionCharts" class="img-circle">
+            </a>
+            <!-- FC home -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="header-link" href="//github.com/fusioncharts/ember-fusioncharts" target="_blank">GitHub Repository</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- navbar end -->
+
+        <div class="page-container">
+            <div id="mainContainer" class="main-container">
+                <div class="content-container">
+                    <!-- Banner start -->
+                    <div class="jumbotron banner-bg-3 heroContainer fixed-bg home-banner pl-2 pr-2 pl-sm-3 pr-sm-3 pl-md-3 pr-md-3 pl-lg-6 pr-lg-6 pb-4 pt-4">
+                        <div class="container container-1440 info-wrapper">
+                            <div class="row">
+                                <div class="col-md-8 offset-md-2">
+                                    <div class="h1 text-white text-center">
+                                        <img id="lang-logo" class="img-valign" src="./assets/images/ember.svg" width="40" height="40" alt="EmberJS" />
+                                        <img id="fc-logo" class="img-valign" src="./assets/images/fc-min-logo.svg" width="40" height="40" alt="FusionCharts" />
+                                        <span class="title pl-1">Ember-FusionCharts</span>
+                                    </div>
+                                    <div class="h3 text-white text-center mt-2">
+                                        <span class="sub-title primary">
+                                            An easy-to-use, lightweight EmberJS component for the FusionCharts JavaScript Charting Library
+                                        </span>
+                                    </div>
+                                    <div class="p text-white text-center mt-2">
+                                        <span class="sub-title secondary">
+                                            The Ember-FusionCharts component lets you easily include FusionCharts in your EmberJS projects and add interactive charts to
+                                            your Ember applications.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Banner end -->
+
+
+                <!-- Feature Section start -->
+                <div class="container container-1200 info-wrapper pb-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="h2 mt-2">Features</div>
+                            <!-- list start -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="feature-list">
+                                        <li>
+                                            <span>
+                                                <i class="icn-inline icn-success fc_select"></i>
+                                            </span>
+                                            <div>Adds a chart using just one single component.</div>
+                                        </li>
+                                        <li>
+                                            <span>
+                                                <i class="icn-inline icn-success fc_select"></i>
+                                            </span>
+                                            <div>Allows you to enable interactivity between Javascript charts.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="feature-list">
+                                        <li>
+                                            <span>
+                                                <i class="icn-inline icn-success fc_select"></i>
+                                            </span>
+                                            <div>Auto-updates the chart object when the data source is modified.</div>
+                                        </li>
+                                        <li>
+                                            <span>
+                                                <i class="icn-inline icn-success fc_select"></i>
+                                            </span>
+                                            <div>Offers advanced control by giving you access to the complete FusionCharts object (containing the chart configuration).</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- list end -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Feature Section end -->
+
+
+                <!-- Demo Section start -->
+                <div class="demo bg-light-purple pt-4 pb-4">
+                    <div class="container container-1200 info-wrapper">
+                        <!-- Chart selection for mobile devices - start -->
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-center d-md-none">
+                                <div id="mobileChart-selector" class="base-dropdown chart-selector">
+                                    <div class="selector">A Simple Chart</div>
+                                    <div class="placeholder">Quick Demo:</div>
+                                    <div class="caret">
+                                        <i class="fc_dropdown"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal for selection (Only for Mobile Devices) -->
+                        <div id="myModal" class="modal hidden">
+
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <div class="nav-list">
+                                    <div data-id="simple-chart" class="nav-item selected">
+                                        <div class="p">A Simple Chart</div>
+                                    </div>
+                                    <div data-id="3d-pie-chart"class="nav-item">
+                                        <div class="p">A 3D Pie Chart</div>
+                                    </div>
+                                    <div data-id="column-line-area-combi-chart" class="nav-item">
+                                        <div class="p">A Column, Line and Area Combi Chart</div>
+                                    </div>
+                                    <div data-id="fetch-data-from-json-url" class="nav-item">
+                                        <div class="p">Fetch data from JSON URL</div>
+                                    </div>
+                                    <div data-id="fetch-data-from-xml-url" class="nav-item">
+                                        <div class="p">Fetch data from XML URL</div>
+                                    </div>
+                                    <div data-id="update-chart-data" class="nav-item">
+                                        <div class="p">Update chart data from component</div>
+                                    </div>
+                                    <div data-id="update-chart-attributes" class="nav-item">
+                                        <div class="p">Update chart attribute from component</div>
+                                    </div>
+                                    <div data-id="trigger-events-from-chart" class="nav-item">
+                                        <div class="p">Trigger events from chart</div>
+                                    </div>
+                                    <div data-id="percentage-calculation" class="nav-item">
+                                        <div class="p">Percentage Calculation</div>
+                                    </div>
+                                    <div data-id="export-charts" class="nav-item">
+                                        <div class="p">Export multiple charts</div>
+                                    </div>
+                                    <!-- <div data-id="drill-down" class="nav-item">
+                                        <div class="p">Add drill-down to chart</div>
+                                    </div> -->
+                                    <div data-id="simple-gauge" class="nav-item">
+                                        <div class="p">A simple gauge</div>
+                                    </div>
+                                    <div data-id="world-map" class="nav-item">
+                                        <div class="p">World Map</div>
+                                    </div>
+                                    <div data-id="apply-theme" class="nav-item">
+                                        <div class="p">Applying a different theme</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Chart selection for mobile devices - end -->
+
+                        <div class="row">
+                            <div class="side-nav col-3 d-none d-md-block">
+                                <div class="nav-heading">Quick Demo:</div>
+                                <div class="nav-list">
+                                    <div data-id="simple-chart" class="nav-item selected">
+                                        <div class="h5">A Simple Chart</div>
+                                        <div class="p item-desc">A simple chart with all data embedded into the directive</div>
+                                    </div>
+                                    <div data-id="3d-pie-chart"class="nav-item">
+                                        <div class="h5">A 3D Pie Chart</div>
+                                        <div class="p item-desc">A 3D pie chart using the datasource attribute from components scope</div>
+                                    </div>
+                                    <div data-id="column-line-area-combi-chart" class="nav-item">
+                                        <div class="h5">A Column, Line and Area Combi Chart</div>
+                                        <div class="p item-desc">A column, line and area combination chart using the datasource attribute</div>
+                                    </div>
+                                    <div data-id="fetch-data-from-json-url" class="nav-item">
+                                        <div class="h5">Fetch data from JSON URL</div>
+                                        <div class="p item-desc">Fetch data remotely from a JSON file or URL</div>
+                                    </div>
+                                    <div data-id="fetch-data-from-xml-url" class="nav-item">
+                                      <div class="h5">Fetch data from XML URL</div>
+                                      <div class="p item-desc">Fetch data remotely from a XML file or URL</div>
+                                    </div>
+                                    <div data-id="update-chart-data" class="nav-item">
+                                        <div class="h5">Update chart data from component</div>
+                                        <div class="p item-desc">Change the data dynamically in the component and watch the chart update automatically</div>
+                                    </div>
+                                    <div data-id="update-chart-attributes" class="nav-item">
+                                      <div class="h5">Update chart attribute from component</div>
+                                      <div class="p item-desc">Change a parameter in the components variable and see it automatically update the chart</div>
+                                    </div>
+                                    <div data-id="trigger-events-from-chart" class="nav-item">
+                                        <div class="h5">Trigger events from chart</div>
+                                        <div class="p item-desc">Hover on a plot to trigger an event in the component, and update variables</div>
+                                    </div>
+                                    <div data-id="percentage-calculation" class="nav-item">
+                                      <div class="h5">Percentage Calculation</div>
+                                      <div class="p item-desc">Hover on a plot to see the percentage value with respect to total</div>
+                                    </div>
+                                    <div data-id="export-charts" class="nav-item">
+                                      <div class="h5">Export multiple charts</div>
+                                      <div class="p item-desc">Use Batch Export to export multiple charts as a single image/PDF</div>
+                                    </div>
+                                    <!-- <div data-id="drill-down" class="nav-item">
+                                      <div class="h5">Add drill-down to chart</div>
+                                      <div class="p item-desc">Use LinkedCharts to quickly add drill-down to charts</div>
+                                    </div> -->
+                                    <div data-id="simple-gauge" class="nav-item">
+                                      <div class="h5">A simple gauge</div>
+                                      <div class="p item-desc">A simple gauge to show customer satisfaction score</div>
+                                    </div>
+                                    <div data-id="world-map" class="nav-item">
+                                      <div class="h5">World Map</div>
+                                      <div class="p item-desc">World map showing data for different continents</div>
+                                    </div>
+                                    <div data-id="apply-theme" class="nav-item">
+                                      <div class="h5">Applying a different theme</div>
+                                      <div class="p item-desc">Choosing from different themes available in FusionCharts Suite</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9 col-12">
+                                <div class="card shadow">
+                                    <div class="card-body chart-wrapper">
+                                        <div class="chart-wrapper-inner">
+                                            <!-- render chart here -->
+                                            <div id="chart-container-wrapper">
+                                                <iframe id="chart-container"></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="code-view mt-2">
+                                    <div class="card-shadow" style="background: #03040B;">
+                                        <div class="code-nav-btns btn-group" role="group" aria-label="Basic example">
+                                            <button data-id="code" type="button" class="btn btn-code selected">JavaScript</button>
+                                            <button data-id="ember-build" type="button" class="btn btn-code">ember-cli-build.js</button>
+                                            <button data-id="html" type="button" class="btn btn-code">HTML</button>
+                                            <button data-id="data" type="button" class="btn btn-code">Data</button>
+                                        </div>
+                                        <div class="card-body p-0">
+                                            <div class="code-panel">
+                                                <div class="code-panel-header">
+                                                    <div id="chartCode"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Demo Section end -->
+
+                <!-- info section start -->
+                <div class="container container-1200 info-wrapper pt-4">
+                    <div class="row">
+                        <div class="col">
+                            <div class="h2 mt-2">Quick Start</div>
+                        </div>
+                    </div>
+                    <div class="h4 mt-2">Setting up the FusionCharts EmberJS Addon</div>
+                    <!-- steps -->
+                    <div class="row">
+                        <div class="col-12 pt-1">
+                            <div class="h6">
+                                <span>Step 1: Install the Ember FusionCharts wrapper framework</span>
+                            </div>
+                            <p class="code-desc mt-2 mb-1">
+                                To install <code>ember-fusioncharts</code> to any existing ember project, run:
+                            </p>
+                            <div class="code-view mt-2">
+                                <div class="card-shadow">
+                                    <div class="card-body p-0">
+                                        <div class="code-panel">
+                                            <div class="codeMirrorDiv" id="c1"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                    <!-- steps -->
+                    <div class="row">
+                        <div class="col-12 pt-3">
+                            <div class="h6">
+                                <span>Step 2: Import FusionCharts library</span>
+                            </div>
+                            <p class="code-desc mt-2 mb-1">
+                                In your <code>ember-cli-build.js</code> build file, import <code>fusioncharts</code> library:
+                            </p>
+                            <div class="code-view mt-2">
+                                <div class="card-shadow">
+                                    <div class="card-body p-0">
+                                        <div class="code-panel">
+                                            <div class="codeMirrorDiv" id="c2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- steps -->
+                    <div class="row">
+                        <div class="col-12 pt-3">
+                            <div class="h6">
+                                <span>Step 3: Create a simple component</span>
+                            </div>
+                            <p class="code-desc mt-2 mb-1">
+                                Create a simple component(e.g. <code>chart-viewer</code>, also you can use it anywhere in your application) to show your interactive charts, run:
+                            </p>
+                            <div class="code-view mt-2">
+                                <div class="card-shadow">
+                                    <div class="card-body p-0">
+                                        <div class="code-panel">
+                                            <div class="codeMirrorDiv" id="c3"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="code-desc mt-2 mb-1">
+                                Write your chart logic in <code>chart-viewer.js</code> file:
+                            </p>
+                            <div class="code-view mt-2">
+                                <div class="card-shadow">
+                                    <div class="card-body p-0">
+                                        <div class="code-panel">
+                                            <div class="codeMirrorDiv" id="c4"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="code-desc mt-2 mb-1">
+                                And use <code>fusioncharts-xt</code> component in your <code>chart-viewer.hbs</code> template to show your charts:
+                            </p>
+                            <div class="code-view mt-2">
+                                <div class="card-shadow">
+                                    <div class="card-body p-0">
+                                        <div class="code-panel">
+                                            <div class="codeMirrorDiv" id="c5"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+
+                    <!-- steps end -->
+                    <div class="row">
+                        <div class="col-12 pt-3">
+                            <div class="h5">Support</div>
+                            <p>
+                                <a class="ref-link" href="github.com/fusioncharts/ember-fusioncharts/issues" target="_blank">GitHub Issues</a> |
+                                <a class="ref-link" href="mailto:support@fusioncharts.com" target="_blank">Contact FusionCharts Support</a>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- licensing footer starts -->
+                    <div class="row">
+                        <div class="col-12 pt-3">
+                            <div class="h5">Licensing</div>
+                            <p>Ember-FusionCharts module is licensed under open-source, distributed under the terms of the MIT/X11
+                                License. You will still need to include FusionCharts in your page, as this project provides
+                                no direct functionality. You can download a free evaluation version
+                                <a class="ref-link" href="//www.fusioncharts.com/download/" target="_blank">here</a>. To use in a commercial environment, please
+                                <a class="ref-link" href="//www.fusioncharts.com/buy/" target="_blank">purchase a FusionCharts license</a>.</p>
+                        </div>
+                    </div>
+                    <!-- licensing footer ends -->
+                    <!-- info section end -->
+                </div>
+
+                <!-- footer start -->
+                <div id="footbar" class="text-center mt-2">
+                    <div class="col-12">
+                        <p class="foot-item pt-4">© 2002-2018 InfoSoft Global Private Limited. All Rights Reserved.</p>
+                    </div>
+                </div>
+                <!-- footer end -->
+            </div>
+        </div>
+        <script src="./assets/scripts/samples.js"></script>
+        <script src="./assets/scripts/app.js"></script>
+
+</body>
+
 </html>
