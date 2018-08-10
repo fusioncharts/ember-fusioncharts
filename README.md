@@ -34,9 +34,8 @@ module.exports = function(defaults) {
 
   // Import fusioncharts library
   app.import('node_modules/fusioncharts/fusioncharts.js');
-  app.import('node_modules/fusioncharts/fusioncharts.charts.js');
-  app.import('node_modules/fusioncharts/themes/fusioncharts.theme.fint.js');
-  app.import('node_modules/fusioncharts/themes/fusioncharts.theme.ocean.js');
+  app.import('node_modules/fusioncharts/fusioncharts.charts.js');  
+  app.import('node_modules/fusioncharts/themes/fusioncharts.theme.fusion.js');
 
   // Use `app.import` to add additional libraries to the generated
   // output files.
