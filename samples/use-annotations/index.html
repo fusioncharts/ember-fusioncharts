@@ -36,52 +36,73 @@
     <script type="text/javascript">
         jQuery('document').ready(function () {
             $("#chart-container").insertFusionCharts({
-                type: "column2d",
+                type: "spline",
                 width: "100%",
                 height: "100%",
                 dataFormat: "json",
                 dataSource: {
                     "chart": {
-                        "caption": "Countries With Most Oil Reserves [2017-18]",
-                        "subCaption": "In MMbbl = One Million barrels",
-                        "xAxisName": "Country",
-                        "yAxisName": "Reserves (MMbbl)",
-                        "numberSuffix": "K",
+                        "caption": "Bakersfield Central - Total footfalls",
+                        "subCaption": "Last week",
+                        "xAxisName": "Day",
+                        "yAxisName": "No. of Visitors (In 1000s)",
+                        "showValues": "0",
                         "theme": "fusion"
                     },
                     "data": [{
-                            "label": "Venezuela",
-                            "value": "290"
+                            "label": "Mon",
+                            "value": "15123"
                         },
                         {
-                            "label": "Saudi",
-                            "value": "260"
+                            "label": "Tue",
+                            "value": "14233"
                         },
                         {
-                            "label": "Canada",
-                            "value": "180"
+                            "label": "Wed",
+                            "value": "25507"
                         },
                         {
-                            "label": "Iran",
-                            "value": "140"
+                            "label": "Thu",
+                            "value": "9110"
                         },
                         {
-                            "label": "Russia",
-                            "value": "115"
+                            "label": "Fri",
+                            "value": "15529"
                         },
                         {
-                            "label": "UAE",
-                            "value": "100"
+                            "label": "Sat",
+                            "value": "20803"
                         },
                         {
-                            "label": "US",
-                            "value": "30"
-                        },
-                        {
-                            "label": "China",
-                            "value": "30"
+                            "label": "Sun",
+                            "value": "19202"
                         }
-                    ]
+                    ],
+                    "annotations": {
+                        "groups": [{
+                            "id": "anchor-highlight",
+                            "items": [{
+                                    "id": "high-star",
+                                    "type": "circle",
+                                    "x": "$dataset.0.set.2.x",
+                                    "y": "$dataset.0.set.2.y",
+                                    "radius": "12",
+                                    "color": "#6baa01",
+                                    "border": "2",
+                                    "borderColor": "#f8bd19"
+                                },
+                                {
+                                    "id": "label",
+                                    "type": "text",
+                                    "text": "Highest footfall 25.5K",
+                                    "fillcolor": "#6baa01",
+                                    "rotate": "90",
+                                    "x": "$dataset.0.set.2.x+75",
+                                    "y": "$dataset.0.set.2.y-2"
+                                }
+                            ]
+                        }]
+                    }
                 }
             });
         });

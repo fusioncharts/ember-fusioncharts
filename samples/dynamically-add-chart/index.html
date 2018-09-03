@@ -16,12 +16,22 @@
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="../../assets/css/fusioncharts.theme.fusion.css" />
     <style>
-        #message {
-            position: absolute;
-            bottom: 0px;
-            text-align: center;
-            width: 100%;
-            margin: 0px;
+        .btn {
+            font-family: 'Source Sans Pro';
+            margin: 5px;
+        }
+
+        .btn.btn-primary {
+            background: #4a4d8c;
+            transition: all 300ms;
+        }
+
+        .btn.btn-primary:hover {
+            background: #5c62b5;
+        }
+
+        .btn.btn-primary:active {
+            background: #4a4d8c
         }
     </style>
 </head>
@@ -32,9 +42,13 @@
     <![endif]-->
 
     <div id="chart-container"></div>
-    <p style="padding: 10px; background: rgb(245, 242, 240);" id='message'>
-        Hover on the plot to see the percentage along with the label
-    </p>
+    <div style="padding: 0px; background: rgb(255, 255, 255);" id='message'>
+        Click the below buttons to add an event dynamically to a chart
+    </div>
+    <div style="display: flex; justify-content: center; margin: 0px">
+        <button class="btn btn-outline-secondary btn-sm" id="track">ADD/LISTEN TO DATAPLOTCLICK EVENT</button>
+        <button class="btn btn-outline-secondary btn-sm" id="reset" disabled="true">REMOVE DATAPLOTCLICK EVENT</button>
+    </div>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -90,24 +104,30 @@
                     }
                 ]
             };
-            var total = dataSource.data.reduce((p, c) => p + Number(c.value), 0);
 
             $("#chart-container").insertFusionCharts({
                 type: "column2d",
                 width: "100%",
-                height: "90%",
+                height: "85%",
                 dataFormat: "json",
                 dataSource: dataSource
             });
 
-            $('#chart-container').bind('fusionchartsdataplotrollover', function (event, args) {
-                let value = (args.value / total * 100).toFixed(2);
-                $('#message').html("<b>" + args.categoryLabel + "</b> is <b>" + value +
-                    "%</b> of the total");
+            // Handlers for tracking click events
+            $('#track').click(function () {
+                $('#message').html('Click on the plot to see the value along with the label');
+                $('#chart-container').bind('fusionchartsdataplotclick', function (event, data) {
+                    $('#message').html('You have clicked on plot <b>' + data.categoryLabel +
+                        '</b> whose value is <b>' + data.displayValue + '</b>');
+                });
+                $('#track').attr('disabled', 'disabled');
+                $('#reset').removeAttr('disabled');
             });
-            $('#chart-container').bind('fusionchartsdataplotrollout', function (event, args) {
-                let value = (args.value / total * 100).toFixed(2);
-                $('#message').html("Hover on the plot to see the percentage along with the label");
+            $('#reset').click(function () {
+                $('#chart-container').unbind('fusionchartsdataplotclick');
+                $('#message').html('Click the below buttons to add an event dynamically to a chart');
+                $('#track').removeAttr('disabled');
+                $('#reset').attr('disabled', 'disabled');
             });
         });
     </script>

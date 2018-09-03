@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="//s3-eu-west-1.amazonaws.com/fcdesignsystem/1.0.0/css/fusionDesign.css">
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="../../assets/css/fusioncharts.theme.fusion.css" />
-    <link rel="stylesheet" href="../../assets/css/fusioncharts.theme.gammel.css" />
     <style>
         .change-type {
             display: inline-block;
@@ -98,32 +97,28 @@
     <![endif]-->
 
     <div id="chart-container"></div>
-    <div style="display: flex; position: absolute; bottom: 2px;">
+    <div style="display: flex; justify-content: center; bottom: 2px;">
         <div id="select-text">Choose a theme:</div>
         <div class="change-type">
             <div id="radio1">
                 <input name="theme-selecter" id="radioButton1" type="radio" checked="checked" />
-                <label>Fusion</label>
+                <label>None</label>
             </div>
             <div id="radio2">
                 <input name="theme-selecter" id="radioButton2" type="radio"/>
-                <label>Gammel</label>
+                <label>Apache</label>
             </div>
             <div id="radio3">
                 <input name="theme-selecter" id="radioButton3" type="radio"/>
-                <label>Candy</label>
+                <label>Microsoft</label>
             </div>
             <div id="radio4">
                 <input name="theme-selecter" id="radioButton4" type="radio"/>
-                <label>Zune</label>
+                <label>Zeus</label>
             </div>
             <div id="radio5">
                 <input name="theme-selecter" id="radioButton5" type="radio"/>
-                <label>Ocean</label>
-            </div>
-            <div id="radio6">
-                <input name="theme-selecter" id="radioButton6" type="radio"/>
-                <label>Carbon</label>
+                <label>Other</label>
             </div>
         </div>
     </div>
@@ -133,13 +128,6 @@
     <!-- FusionCharts -->
     <script src="../../assets/scripts/fusioncharts/fusioncharts.js"></script>
     <script src="../../assets/scripts/fusioncharts/themes/fusioncharts.theme.fusion.js"></script>
-    <script src="../../assets/scripts/fusioncharts/themes/fusioncharts.theme.candy.js"></script>
-    <script src="../../assets/scripts/fusioncharts/themes/fusioncharts.theme.gammel.js"></script>
-    <script src="../../assets/scripts/fusioncharts/themes/fusioncharts.theme.fint.js"></script>
-    <script src="../../assets/scripts/fusioncharts/themes/fusioncharts.theme.ocean.js"></script>
-    <script src="../../assets/scripts/fusioncharts/themes/fusioncharts.theme.carbon.js"></script>
-    <script src="../../assets/scripts/fusioncharts/themes/fusioncharts.theme.zune.js"></script>
-    <!-- <script src="../../assets/scripts/fusioncharts.theme.fusion.js"></script> -->
     <!-- jQuery-FC -->
     <script src="../../assets/scripts/fusioncharts.jqueryplugin.min.js"></script>
 
@@ -147,76 +135,65 @@
     <script type="text/javascript">
         jQuery('document').ready(function () {
             var dataSource = {
-                    "chart": {
-                        "caption": "Countries With Most Oil Reserves [2017-18]",
-                        "subCaption": "In MMbbl = One Million barrels",
-                        "xAxisName": "Country",
-                        "yAxisName": "Reserves (MMbbl)",
-                        "numberSuffix": "K",
-                        "theme": "fusion"
-                    },
-                    "data": [{
-                            "label": "Venezuela",
-                            "value": "290"
-                        },
-                        {
-                            "label": "Saudi",
-                            "value": "260"
-                        },
-                        {
-                            "label": "Canada",
-                            "value": "180"
-                        },
-                        {
-                            "label": "Iran",
-                            "value": "140"
-                        },
-                        {
-                            "label": "Russia",
-                            "value": "115"
-                        },
-                        {
-                            "label": "UAE",
-                            "value": "100"
-                        },
-                        {
-                            "label": "US",
-                            "value": "30"
-                        },
-                        {
-                            "label": "China",
-                            "value": "30"
-                        }
-                    ]
-                };
+                "chart": {
+                    "caption": "Market Share of Web Servers",
+                    "plottooltext": "<b>$percentValue</b> of web servers run on $label servers",
+                    "showLegend": "1",
+                    "showPercentValues": "1",
+                    "legendPosition": "bottom",
+                    "useDataPlotColorForLabels": "1",
+                    "enablemultislicing": "0",
+                    "showlegend": "0",
+                    "theme": "fusion",
+                },
+                "data": [{
+                    "label": "Apache",
+                    "value": "32647479"
+                }, {
+                    "label": "Microsoft",
+                    "value": "22100932"
+                }, {
+                    "label": "Zeus",
+                    "value": "14376"
+                }, {
+                    "label": "Other",
+                    "value": "18674221"
+                }]
+            };
 
             $("#chart-container").insertFusionCharts({
-                id: 'theme-chart',
-                type: "column2d",
+                id: "pie-slice-chart",
+                type: "pie2d",
                 width: "100%",
                 height: "90%",
                 dataFormat: "json",
                 dataSource: dataSource
             });
 
-            // Handlers for changing the theme using setChartAttribute method
-            $("#radio1").click(function () {
-                FusionCharts.items['theme-chart'].setChartAttribute('theme', 'fusion');
+            $('#chart-container').bind('fusionchartsdataplotclick', function (event, args) {
+                if (args.isSliced) {
+                    $('#radioButton1').prop('checked', true);
+                } else {
+                    $('#radioButton' + (args.index + 2)).prop('checked', true);
+                }
+            })
+
+            $('#radio1').click(function () {
+                for (var i in dataSource.data) {
+                    FusionCharts.items['pie-slice-chart'].slicePlotItem(i, false)
+                }
             });
             $("#radio2").click(function () {
-                FusionCharts.items['theme-chart'].setChartAttribute('theme', 'gammel');
+                FusionCharts.items['pie-slice-chart'].slicePlotItem(0, true);
             });
             $("#radio3").click(function () {
-                FusionCharts.items['theme-chart'].setChartAttribute('theme', 'candy');
+                FusionCharts.items['pie-slice-chart'].slicePlotItem(1, true);
             });
             $("#radio4").click(function () {
-                FusionCharts.items['theme-chart'].setChartAttribute('theme', 'zune');
+                FusionCharts.items['pie-slice-chart'].slicePlotItem(2, true);
             });
             $("#radio5").click(function () {
-                FusionCharts.items['theme-chart'].setChartAttribute('theme', 'ocean');
-            });
-            $("#radio6").click(function () {
-                FusionCharts.items['theme-chart'].setChartAttribute('theme', 'carbon');
+                FusionCharts.items['pie-slice-chart'].slicePlotItem(3, true);
             });
         });
     </script>

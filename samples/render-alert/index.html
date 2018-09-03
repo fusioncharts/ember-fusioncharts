@@ -33,7 +33,7 @@
 
     <div id="chart-container"></div>
     <p style="padding: 10px; background: rgb(245, 242, 240);" id='message'>
-        Hover on the plot to see the percentage along with the label
+        Status: 
     </p>
 
     <!-- jQuery -->
@@ -90,24 +90,29 @@
                     }
                 ]
             };
-            var total = dataSource.data.reduce((p, c) => p + Number(c.value), 0);
 
-            $("#chart-container").insertFusionCharts({
-                type: "column2d",
-                width: "100%",
-                height: "90%",
-                dataFormat: "json",
+            // bind beforeDataUpdate and dataUpdated events
+            $('#chart-container').bind('fusionchartsbeforedataupdate', function (event, args) {
+                $('#message').append('beforeDataUpdate, ');
+            });
+            $('#chart-container').bind('fusionchartsdataupdated', function (event, args) {
+                $('#message').append('dataUpdated, ');
+            });
+
+            $('#chart-container').insertFusionCharts({
+                type: 'column2d',
+                width: '100%',
+                height: '90%',
+                dataFormat: 'json',
                 dataSource: dataSource
             });
 
-            $('#chart-container').bind('fusionchartsdataplotrollover', function (event, args) {
-                let value = (args.value / total * 100).toFixed(2);
-                $('#message').html("<b>" + args.categoryLabel + "</b> is <b>" + value +
-                    "%</b> of the total");
+            // bind drawComplete and renderComplete events
+            $('#chart-container').bind('fusionchartsdrawcomplete', function (event, args) {
+                $('#message').append('drawComplete, ');
             });
-            $('#chart-container').bind('fusionchartsdataplotrollout', function (event, args) {
-                let value = (args.value / total * 100).toFixed(2);
-                $('#message').html("Hover on the plot to see the percentage along with the label");
+            $('#chart-container').bind('fusionchartsrendercomplete', function (event, args) {
+                $('#message').append('renderComplete');
             });
         });
     </script>

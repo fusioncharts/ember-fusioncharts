@@ -15,6 +15,26 @@
     <link rel="stylesheet" href="//s3-eu-west-1.amazonaws.com/fcdesignsystem/1.0.0/css/fusionDesign.css">
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="../../assets/css/fusioncharts.theme.fusion.css" />
+    <link rel="stylesheet" href="../../assets/css/fusioncharts.theme.gammel.css" />
+    <style>
+        .btn {
+            font-family: 'Source Sans Pro';
+            margin: 5px;
+        }
+
+        .btn.btn-primary {
+            background: #4a4d8c;
+            transition: all 300ms;
+        }
+
+        .btn.btn-primary:hover {
+            background: #5c62b5;
+        }
+
+        .btn.btn-primary:active {
+            background: #4a4d8c
+        }
+    </style>
 </head>
 
 <body>
@@ -23,6 +43,12 @@
     <![endif]-->
 
     <div id="chart-container"></div>
+    <div style="justify-content: center; margin: 0px">
+        <button class="btn btn-outline-secondary btn-sm" id="caption">CHANGE CAPTION: TEST CAPTION</a>
+        <button class="btn btn-outline-secondary btn-sm" id="xaxis-name">CHANGE X-AXIS NAME: TEST X-AXIS</a>
+        <button class="btn btn-outline-secondary btn-sm" id="yaxis-name">CHANGE Y-AXIS NAME: TEST Y-AXIS</a>
+        <button class="btn btn-outline-secondary btn-sm" id="reset">RESET</a>
+    </div>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -35,12 +61,7 @@
 
     <script type="text/javascript">
         jQuery('document').ready(function () {
-            $("#chart-container").insertFusionCharts({
-                type: "column2d",
-                width: "100%",
-                height: "100%",
-                dataFormat: "json",
-                dataSource: {
+            var dataSource = {
                     "chart": {
                         "caption": "Countries With Most Oil Reserves [2017-18]",
                         "subCaption": "In MMbbl = One Million barrels",
@@ -49,7 +70,8 @@
                         "numberSuffix": "K",
                         "theme": "fusion"
                     },
-                    "data": [{
+                    "data": [
+                        {
                             "label": "Venezuela",
                             "value": "290"
                         },
@@ -82,7 +104,32 @@
                             "value": "30"
                         }
                     ]
-                }
+                };
+
+            $('#chart-container').insertFusionCharts({
+                id: 'column-chart',
+                type: 'column2d',
+                width: '100%',
+                height: '85%',
+                dataFormat: 'json',
+                dataSource: dataSource
+            });
+
+            // Handlers for changing the theme using setChartAttribute method
+            $('#caption').click(function () {
+                FusionCharts.items['column-chart'].setChartAttribute('caption', 'Test-Caption');
+            });
+            $('#xaxis-name').click(function () {
+                FusionCharts.items['column-chart'].setChartAttribute('xaxisname', 'Test X-Axis');
+            });
+            $('#yaxis-name').click(function () {
+                FusionCharts.items['column-chart'].setChartAttribute('yaxisname', 'Test Y-Axis');
+            });
+            $('#reset').click(function () {
+                var chart = FusionCharts.items['column-chart'];
+                chart.setChartAttribute('caption', 'Countries With Most Oil Reserves [2017-18]');
+                chart.setChartAttribute('xaxisname', 'Country');
+                chart.setChartAttribute('yaxisname', 'Reserves (MMbbl)');
             });
         });
     </script>
