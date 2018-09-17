@@ -44,9 +44,9 @@
 
     <div id="chart-container"></div>
     <div style="justify-content: center; margin: 0px">
-        <button class="btn btn-outline-secondary btn-sm" id="caption">CHANGE CAPTION: TEST CAPTION</a>
-        <button class="btn btn-outline-secondary btn-sm" id="xaxis-name">CHANGE X-AXIS NAME: TEST X-AXIS</a>
-        <button class="btn btn-outline-secondary btn-sm" id="yaxis-name">CHANGE Y-AXIS NAME: TEST Y-AXIS</a>
+        <button class="btn btn-outline-secondary btn-sm" id="caption">CHANGE CAPTION: CAPTION</a>
+        <button class="btn btn-outline-secondary btn-sm" id="xaxis-name">CHANGE X_AXIS NAME TO: X-AXIS NAME</a>
+        <button class="btn btn-outline-secondary btn-sm" id="yaxis-name">CHANGE Y_AXIS NAME TO: Y-AXIS NAME</a>
         <button class="btn btn-outline-secondary btn-sm" id="reset">RESET</a>
     </div>
 
@@ -117,13 +117,13 @@
 
             // Handlers for changing the theme using setChartAttribute method
             $('#caption').click(function () {
-                FusionCharts.items['column-chart'].setChartAttribute('caption', 'Test-Caption');
+                FusionCharts.items['column-chart'].setChartAttribute('caption', 'Caption');
             });
             $('#xaxis-name').click(function () {
-                FusionCharts.items['column-chart'].setChartAttribute('xaxisname', 'Test X-Axis');
+                FusionCharts.items['column-chart'].setChartAttribute('xaxisname', 'X-AXIS NAME');
             });
             $('#yaxis-name').click(function () {
-                FusionCharts.items['column-chart'].setChartAttribute('yaxisname', 'Test Y-Axis');
+                FusionCharts.items['column-chart'].setChartAttribute('yaxisname', 'Y-AXIS NAME');
             });
             $('#reset').click(function () {
                 var chart = FusionCharts.items['column-chart'];
