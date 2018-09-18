@@ -11,13 +11,19 @@ To install `ember-fusioncharts` to any existing ember project, run:
 
 For Modern Ember CLI:
 ```bash
-$ ember install ember-fusioncharts
+$ npm install ember-fusioncharts --save
 ```
 
 For Earlier Ember CLI (and addon developers):
 ```bash
 $ npm install ember-fusioncharts --save-dev
 $ ember g ember-fusioncharts
+```
+
+Then install `fusioncharts` to your project:
+
+```bash
+$ npm install fusioncharts --save
 ```
 
 Then import `fusioncharts` library to your `ember-cli-build.js` build file:
@@ -33,9 +39,9 @@ module.exports = function(defaults) {
   });
 
   // Import fusioncharts library
-  app.import('bower_components/fusioncharts/fusioncharts.js');
-  app.import('bower_components/fusioncharts/fusioncharts.charts.js');  
-  app.import('bower_components/fusioncharts/themes/fusioncharts.theme.fusion.js');
+  app.import('node_modules/fusioncharts/fusioncharts.js');
+  app.import('node_modules/fusioncharts/fusioncharts.charts.js');  
+  app.import('node_modules/fusioncharts/themes/fusioncharts.theme.fusion.js');
 
   // Use `app.import` to add additional libraries to the generated
   // output files.
