@@ -3,6 +3,6 @@ module.exports = {
     normalizeEntityName() { },
 
     afterInstall() {
-        return this.addBowerPackageToProject('fusioncharts');
+        return this.addPackageToProject('fusioncharts');
     },
 };
