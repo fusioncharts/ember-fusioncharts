@@ -1,8 +1,8 @@
 /* eslint-env node */
 module.exports = {
-    normalizeEntityName() { },
+    normalizeEntityName() { }
 
-    afterInstall() {
-        return this.addBowerPackageToProject('fusioncharts');
-    },
+    // afterInstall() {
+    //     return this.addPackageToProject('fusioncharts');
+    // },
 };
