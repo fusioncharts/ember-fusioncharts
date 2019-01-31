@@ -3,7 +3,7 @@
 
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
-module.exports = function (defaults) {
+module.exports = function(defaults) {
     let app = new EmberAddon(defaults, {
         // Add options here
     });
@@ -11,6 +11,7 @@ module.exports = function (defaults) {
     // Import FusionCharts library
     app.import('node_modules/fusioncharts/fusioncharts.js');
     app.import('node_modules/fusioncharts/fusioncharts.charts.js');
+    app.import('node_modules/fusioncharts/fusioncharts.timeseries.js');
     app.import('node_modules/fusioncharts/themes/fusioncharts.theme.fint.js');
     app.import('node_modules/fusioncharts/themes/fusioncharts.theme.ocean.js');
 
