@@ -1,4 +1,4 @@
-const utils = (function () {
+const utils = (function() {
     function isObject(value) {
         return value !== null && typeof value === 'object';
     }
@@ -8,7 +8,9 @@ const utils = (function () {
     }
 
     function isSameObjectContent(obj1, obj2) {
-        if (Object.keys(obj1).length !== Object.keys(obj2).length) { return false; }
+        if (Object.keys(obj1).length !== Object.keys(obj2).length) {
+            return false;
+        }
         const keys = Object.keys(obj1);
 
         for (let i = 0; i < keys.length; ++i) {
@@ -25,7 +27,7 @@ const utils = (function () {
     }
 
     function isUndefined(value) {
-        const UNDEFINED = void (0);
+        const UNDEFINED = void 0;
         return value === UNDEFINED;
     }
 
@@ -145,7 +147,9 @@ App.FusionchartsXtComponent = Ember.Component.extend({
         this.checkAndUpdateChartData(currentOptions, oldOptions);
         this.checkAndUpdateEvents(currentOptions, oldOptions);
         this.checkAndUpdateRestOptions(
-            fusonChartsOptions.filter(option => optionsUpdatedNatively.indexOf(option) === -1),
+            fusonChartsOptions.filter(
+                option => optionsUpdatedNatively.indexOf(option) === -1
+            ),
             currentOptions,
             oldOptions
         );
@@ -161,8 +165,14 @@ App.FusionchartsXtComponent = Ember.Component.extend({
 
         const chartObj = this.get('chartObj');
 
-        if (String(currWidth) !== String(oldWidth) || String(currHeight) !== String(oldHeight)) {
-            if (!utils.isUndefined(currWidth) && !utils.isUndefined(currHeight)) {
+        if (
+            String(currWidth) !== String(oldWidth) ||
+            String(currHeight) !== String(oldHeight)
+        ) {
+            if (
+                !utils.isUndefined(currWidth) &&
+                !utils.isUndefined(currHeight)
+            ) {
                 chartObj.resizeTo(currWidth, currHeight);
             } else {
                 if (!utils.isUndefined(currWidth)) {
@@ -198,9 +208,18 @@ App.FusionchartsXtComponent = Ember.Component.extend({
 
         const chartObj = this.get('chartObj');
 
-        if (String(currDataFormat).toLowerCase() !== String(oldDataFormat).toLowerCase()) {
-            if (!utils.isUndefined(currDataFormat) && !utils.isUndefined(currData)) {
-                chartObj.setChartData(currData, String(currDataFormat).toLowerCase());
+        if (
+            String(currDataFormat).toLowerCase() !==
+            String(oldDataFormat).toLowerCase()
+        ) {
+            if (
+                !utils.isUndefined(currDataFormat) &&
+                !utils.isUndefined(currData)
+            ) {
+                chartObj.setChartData(
+                    currData,
+                    String(currDataFormat).toLowerCase()
+                );
                 // If the chart dataFormat is changed then
                 // animate the chart to show the changes
                 chartObj.render();
@@ -211,7 +230,9 @@ App.FusionchartsXtComponent = Ember.Component.extend({
                     currData,
                     // When dataFormat is not given, but data is changed,
                     // then use 'json' as default dataFormat
-                    currDataFormat ? String(currDataFormat).toLowerCase() : 'json'
+                    currDataFormat
+                        ? String(currDataFormat).toLowerCase()
+                        : 'json'
                 );
             }
         }
@@ -235,15 +256,20 @@ App.FusionchartsXtComponent = Ember.Component.extend({
         if (this.detectChartEventsChange(currEvents, oldEvents)) {
             if (!utils.isUndefined(currEvents)) {
                 temp1 = Object.assign({}, currEvents);
-                temp2 = utils.isUndefined(oldEvents) ? {} : Object.assign({}, oldEvents);
-                Object.keys(temp2).forEach((eventName) => {
+                temp2 = utils.isUndefined(oldEvents)
+                    ? {}
+                    : Object.assign({}, oldEvents);
+                Object.keys(temp2).forEach(eventName => {
                     if (temp2[eventName] === temp1[eventName]) {
                         temp1[eventName] = undefined;
                     } else {
-                        chartObj.removeEventListener(eventName, temp2[eventName]);
+                        chartObj.removeEventListener(
+                            eventName,
+                            temp2[eventName]
+                        );
                     }
                 });
-                Object.keys(temp1).forEach((eventName) => {
+                Object.keys(temp1).forEach(eventName => {
                     if (temp1[eventName]) {
                         chartObj.addEventListener(eventName, temp1[eventName]);
                     }
@@ -254,14 +280,16 @@ App.FusionchartsXtComponent = Ember.Component.extend({
 
     detectChartEventsChange(currEvents, oldEvents) {
         if (utils.isObject(currEvents) && utils.isObject(oldEvents)) {
-            return !(this.isSameChartEvents(currEvents, oldEvents));
+            return !this.isSameChartEvents(currEvents, oldEvents);
         } else {
             return !(currEvents === oldEvents);
         }
     },
 
     isSameChartEvents(currEvents, oldEvents) {
-        if (Object.keys(currEvents).length !== Object.keys(oldEvents).length) { return false; }
+        if (Object.keys(currEvents).length !== Object.keys(oldEvents).length) {
+            return false;
+        }
         const currEventNames = Object.keys(currEvents);
         for (let i = 0; i < currEventNames.length; ++i) {
             const evName = currEventNames[i];
@@ -276,12 +304,15 @@ App.FusionchartsXtComponent = Ember.Component.extend({
         let optionsUpdated = false;
         const chartObj = this.get('chartObj');
 
-        restOptions.forEach((optionName) => {
+        restOptions.forEach(optionName => {
             const currValue = currentOptions[optionName];
             const oldValue = oldOptions[optionName];
             if (!this.isSameOptionValue(currValue, oldValue)) {
                 if (!utils.isUndefined(currValue)) {
-                    if (chartObj.options && chartObj.options.hasOwnProperty(optionName)) {
+                    if (
+                        chartObj.options &&
+                        chartObj.options.hasOwnProperty(optionName)
+                    ) {
                         chartObj.options[optionName] = currValue;
                         optionsUpdated = true;
                     }
@@ -315,21 +346,31 @@ App.FusionchartsXtComponent = Ember.Component.extend({
     },
 
     getCurrentOptions() {
-        const chartConfig = this.get('chartConfig') ? this.get("chartConfig") : {};
-        const inlineOptions = fusonChartsOptions.reduce((options, optionName) => {
-            options[optionName] = this.get(optionName);
-            return options;
-        }, {});
+        const chartConfig = this.get('chartConfig')
+            ? this.get('chartConfig')
+            : {};
+        const inlineOptions = fusonChartsOptions.reduce(
+            (options, optionName) => {
+                options[optionName] = this.get(optionName);
+                return options;
+            },
+            {}
+        );
         Object.assign(inlineOptions, chartConfig);
 
         if (utils.isObject(inlineOptions['dataSource'])) {
-            inlineOptions['dataSource'] = utils.deepCopyOf(inlineOptions['dataSource']);
+            inlineOptions['dataSource'] = utils.deepCopyOf(
+                inlineOptions['dataSource']
+            );
         }
         if (utils.isObject(inlineOptions['link'])) {
             inlineOptions['link'] = utils.deepCopyOf(inlineOptions['link']);
         }
         if (utils.isObject(inlineOptions['events'])) {
-            inlineOptions['events'] = Object.assign({}, inlineOptions['events']);
+            inlineOptions['events'] = Object.assign(
+                {},
+                inlineOptions['events']
+            );
         }
         return inlineOptions;
     },
