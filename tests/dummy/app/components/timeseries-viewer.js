@@ -6,18 +6,16 @@ const dataSource = {
     text: 'Sales Analysis'
   },
   subcaption: {
-    text: 'Grocery'
+    text: 'Grocery & Footwear'
   },
+  series: 'Type',
   yAxis: [
     {
-      plot: {
-        value: 'Grocery Sales Value',
-        type: 'line'
-      },
+      plot: 'Sales Value',
+      title: 'Sale Value',
       format: {
         prefix: '$'
-      },
-      title: 'Sale Value'
+      }
     }
   ]
 };
@@ -25,11 +23,10 @@ const dataSource = {
 const jsonify = res => res.json();
 // This is the remote url to fetch the data.
 const dataFetch = fetch(
-  'https://s3.eu-central-1.amazonaws.com/fusion.store/ft/data/line-chart-with-time-axis-data.json'
+  'https://s3.eu-central-1.amazonaws.com/fusion.store/ft/data/plotting-multiple-series-on-time-axis-data.json'
 ).then(jsonify);
-// This is the remote url to fetch the schema.
 const schemaFetch = fetch(
-  'https://s3.eu-central-1.amazonaws.com/fusion.store/ft/schema/line-chart-with-time-axis-schema.json'
+  'https://s3.eu-central-1.amazonaws.com/fusion.store/ft/schema/plotting-multiple-series-on-time-axis-schema.json'
 ).then(jsonify);
 
 export default Component.extend({
