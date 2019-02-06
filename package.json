@@ -1,78 +1,79 @@
 {
-    "name": "ember-fusioncharts",
-    "version": "1.0.0",
-    "description": "A lightweight EmberJS component which provides bindings for FusionCharts JavaScript Charting Library",
-    "keywords": [
-        "ember-addon",
-        "fusioncharts",
-        "bindings",
-        "wrapper",
-        "fusioncharts-wrapper"
-    ],
-    "license": "MIT",
-    "author": {
-        "name": "FusionCharts",
-        "email": "support@fusioncharts.com"
+  "name": "ember-fusioncharts",
+  "version": "2.0.0",
+  "description": "A lightweight EmberJS component which provides bindings for FusionCharts JavaScript Charting Library",
+  "keywords": [
+    "ember-addon",
+    "fusioncharts",
+    "bindings",
+    "wrapper",
+    "fusioncharts-wrapper"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "FusionCharts",
+    "email": "support@fusioncharts.com"
+  },
+  "contributors": [
+    {
+      "name": "Rousan Ali",
+      "email": "rousan@fusioncharts.com",
+      "url": "https://github.com/ariyankhan"
     },
-    "contributors": [
-        {
-            "name": "Rousan Ali",
-            "email": "rousan@fusioncharts.com",
-            "url": "https://github.com/ariyankhan"
-        },
-        {
-            "name": "Subrata Mal",
-            "email": "subrata@fusioncharts.com",
-            "url": "https://github.com/subratamal"
-        }
-    ],
-    "directories": {
-        "doc": "doc",
-        "test": "tests"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/fusioncharts/ember-fusioncharts"
-    },
-    "bugs": {
-        "url": "https://github.com/fusioncharts/ember-fusioncharts/issues"
-    },
-    "scripts": {
-        "build": "ember build",
-        "start": "ember server",
-        "test": "cross-env COVERAGE=true ember test"
-    },
-    "dependencies": {
-        "ember-cli-babel": "^6.6.0",
-        "ember-cli-htmlbars": "^2.0.1",
-        "ember-cli-node-assets": "^0.2.2"
-    },
-    "devDependencies": {
-        "broccoli-asset-rev": "^2.4.5",
-        "cross-env": "^5.1.1",
-        "ember-ajax": "^3.0.0",
-        "ember-cli": "^3.4.2",
-        "ember-cli-code-coverage": "^0.4.2",
-        "ember-cli-dependency-checker": "^2.0.0",
-        "ember-cli-eslint": "^4.0.0",
-        "ember-cli-htmlbars-inline-precompile": "^1.0.0",
-        "ember-cli-inject-live-reload": "^1.4.1",
-        "ember-cli-qunit": "^4.3.2",
-        "ember-cli-release": "^0.2.9",
-        "ember-cli-shims": "^1.1.0",
-        "ember-cli-sri": "^2.1.0",
-        "ember-cli-uglify": "^2.0.0",
-        "ember-disable-prototype-extensions": "^1.1.2",
-        "ember-export-application-global": "^2.0.0",
-        "ember-load-initializers": "^1.0.0",
-        "ember-resolver": "^4.0.0",
-        "ember-source": "~2.16.0",
-        "loader.js": "^4.2.3"
-    },
-    "engines": {
-        "node": "^4.5 || 6.* || >= 7.*"
-    },
-    "ember-addon": {
-        "configPath": "tests/dummy/config"
+    {
+      "name": "Subrata Mal",
+      "email": "subrata@fusioncharts.com",
+      "url": "https://github.com/subratamal"
     }
+  ],
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fusioncharts/ember-fusioncharts"
+  },
+  "bugs": {
+    "url": "https://github.com/fusioncharts/ember-fusioncharts/issues"
+  },
+  "scripts": {
+    "build": "ember build",
+    "start": "ember server",
+    "test": "cross-env COVERAGE=true ember test"
+  },
+  "dependencies": {
+    "ember-cli-babel": "^6.6.0",
+    "ember-cli-htmlbars": "^2.0.1",
+    "ember-cli-node-assets": "^0.2.2"
+  },
+  "devDependencies": {
+    "broccoli-asset-rev": "^2.4.5",
+    "cross-env": "^5.1.1",
+    "ember-ajax": "^3.0.0",
+    "ember-cli": "^3.7.1",
+    "ember-cli-code-coverage": "^0.4.2",
+    "ember-cli-dependency-checker": "^2.0.0",
+    "ember-cli-eslint": "^4.0.0",
+    "ember-cli-htmlbars-inline-precompile": "^1.0.0",
+    "ember-cli-inject-live-reload": "^1.4.1",
+    "ember-cli-qunit": "^4.4.0",
+    "ember-cli-release": "^0.2.9",
+    "ember-cli-shims": "^1.1.0",
+    "ember-cli-sri": "^2.1.0",
+    "ember-cli-uglify": "^2.0.0",
+    "ember-disable-prototype-extensions": "^1.1.2",
+    "ember-export-application-global": "^2.0.0",
+    "ember-load-initializers": "^1.0.0",
+    "ember-resolver": "^4.0.0",
+    "ember-source": "~2.16.0",
+    "fusioncharts": "^3.13.3-sr.1",
+    "loader.js": "^4.2.3"
+  },
+  "engines": {
+    "node": "^4.5 || 6.* || >= 7.*"
+  },
+  "ember-addon": {
+    "configPath": "tests/dummy/config"
+  }
 }
