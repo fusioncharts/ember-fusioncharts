@@ -128,6 +128,64 @@ var step4command1 = CodeMirror(document.getElementById('c6'), {
 var c6Code = '{{chart-viewer}}\n    \n{{outlet}}';
 step4command1.setValue(c6Code);
 
+var ftSetupCode = CodeMirror(document.getElementById('c8'), {
+  tabSize: '4',
+  smartIndent: true,
+  lineNumbers: true,
+  readOnly: true,
+  theme: 'dracula',
+  mode: 'javascript'
+});
+var c8Code =
+  "/* eslint-env node */\n'use strict';\n\nconst EmberApp = require('ember-cli/lib/broccoli/ember-app');\n\nmodule.exports = function(defaults) {\n  let app = new EmberApp(defaults, {\n    // Add options here\n  });\n\n  // Import fusioncharts library\n  app.import('node_modules/fusioncharts/fusioncharts.js');\n  app.import('node_modules/fusioncharts/fusioncharts.timeseries.js');\n\n  // Use `app.import` to add additional libraries to the generated\n  // output files.\n  //\n  // If you need to use different assets in different\n  // environments, specify an object as the first parameter. That\n  // object's keys should be the environment name and the values\n  // should be the asset to use in that environment.\n  //\n  // If the library that you are including contains AMD or ES6\n  // modules that you would like to import into your application\n  // please specify an object with the list of modules as keys\n  // along with the exports of each module as its value.\n\n  return app.toTree();\n};";
+ftSetupCode.setValue(c8Code);
+
+var ftComponentGen = CodeMirror(document.getElementById('c9'), {
+  tabSize: '4',
+  smartIndent: true,
+  lineNumbers: true,
+  readOnly: true,
+  theme: 'dracula',
+  mode: 'javascript'
+});
+var c9Code = '$ ember g component timeseries-viewer';
+ftComponentGen.setValue(c9Code);
+
+var ftComponentCode = CodeMirror(document.getElementById('c10'), {
+  tabSize: '4',
+  smartIndent: true,
+  lineNumbers: true,
+  readOnly: true,
+  theme: 'dracula',
+  mode: 'javascript'
+});
+var c10Code =
+  "import Component from '@ember/component';\n\nconst dataSource = {\n  data: null,\n  caption: {\n    text: 'Sales Analysis'\n  },\n  subcaption: {\n    text: 'Grocery'\n  },\n  yAxis: [\n    {\n      plot: {\n        value: 'Grocery Sales Value',\n        type: 'line'\n      },\n      format: {\n        prefix: '$'\n      },\n      title: 'Sale Value'\n    }\n  ]\n};\n\nconst jsonify = res => res.json();\n// This is the remote url to fetch the data.\nconst dataFetch = fetch(\n'https://s3.eu-central-1.amazonaws.com/fusion.store/ft/data/line-chart-with-time-axis-data.json'\n).then(jsonify);\nconst schemaFetch = fetch(\n'https://s3.eu-central-1.amazonaws.com/fusion.store/ft/schema/line-chart-with-time-axis-schema.json'\n).then(jsonify);\n\nexport default Component.extend({\n  title: 'TimeSeries Example',\n  width: 600,\n  height: 400,\n  type: 'timeseries',\n  dataFormat: null,\n  dataSource: null,\n\n  init() {\n    this._super(...arguments);\n    this.set('dataFormat', 'json');\n    this.createDataTable();\n  },\n\n  createDataTable() {\n    Promise.all([dataFetch, schemaFetch]).then(res => {\n      const data = res[0];\n      const schema = res[1];\n      // First we are creating a DataStore\n      const fusionDataStore = new FusionCharts.DataStore();\n      // After that we are creating a DataTable by passing our data and schema as arguments\n      const fusionDataTable = fusionDataStore.createDataTable(data, schema);\n      // After that we simply mutated our timeseries datasource by attaching the above\n      // DataTable into its data property.\n      dataSource.data = fusionDataTable;\n      this.set('dataSource', dataSource);\n    });\n  }\n});";
+ftComponentCode.setValue(c10Code);
+
+var ftTemplateCode = CodeMirror(document.getElementById('c11'), {
+  tabSize: '4',
+  smartIndent: true,
+  lineNumbers: true,
+  readOnly: true,
+  theme: 'dracula',
+  mode: 'javascript'
+});
+var c11Code =
+  '{{fusioncharts-xt\n  width=width\n  height=height\n  type=type\n  dataFormat=dataFormat\n  dataSource=dataSource}}';
+ftTemplateCode.setValue(c11Code);
+
+var appTemplateCode = CodeMirror(document.getElementById('c12'), {
+  tabSize: '4',
+  smartIndent: true,
+  lineNumbers: true,
+  readOnly: true,
+  theme: 'dracula',
+  mode: 'javascript'
+});
+var c12Code = '{{timeseries-viewer}}\n\n{{outlet}}';
+appTemplateCode.setValue(c12Code);
+
 var modal = document.getElementById('myModal');
 var btn = document.getElementById('mobileChart-selector');
 
