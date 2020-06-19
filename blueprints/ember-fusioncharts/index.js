@@ -1,8 +1,10 @@
 /* eslint-env node */
 module.exports = {
-    normalizeEntityName() { }
+    normalizeEntityName() { },
 
-    // afterInstall() {
-    //     return this.addPackageToProject('fusioncharts');
-    // },
+    afterInstall() {
+        return this.addPackagesToProject([
+            { name: 'fusioncharts', target: '^3.13.3-sr.1' }
+        ]);
+    },
 };

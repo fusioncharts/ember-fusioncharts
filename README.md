@@ -32,7 +32,7 @@ A lightweight EmberJS component which provides bindings for FusionCharts JavaScr
 ### Requirements
 
 - **Node.js**, **NPM/Yarn** installed globally in your OS.
-- **FusionCharts** and **Ember** installed in your project, as detailed
+- **Ember** installed in your project, as detailed
 
 ## Installation
 
@@ -46,7 +46,7 @@ To install `ember-fusioncharts` to any existing ember project, run:
 For Modern Ember CLI:
 
 ```bash
-$ npm install ember-fusioncharts --save
+$ ember install ember-fusioncharts
 ```
 
 For Earlier Ember CLI (and addon developers):
@@ -56,44 +56,16 @@ $ npm install ember-fusioncharts --save-dev
 $ ember g ember-fusioncharts
 ```
 
-Then install `fusioncharts` to your project:
-
-```bash
-$ npm install fusioncharts --save
-```
-
-Then import `fusioncharts` library to your `ember-cli-build.js` build file:
+Then add an `ember-fusioncharts` object to `config/environment.js` in your project to specify which fusioncharts libraries and themes you would like to import:
 
 ```javascript
-/* eslint-env node */
-'use strict';
-
-const EmberApp = require('ember-cli/lib/broccoli/ember-app');
-
-module.exports = function(defaults) {
-  let app = new EmberApp(defaults, {
-    // Add options here
-  });
-
-  // Import fusioncharts library
-  app.import('node_modules/fusioncharts/fusioncharts.js');
-  app.import('node_modules/fusioncharts/fusioncharts.charts.js');
-  app.import('node_modules/fusioncharts/themes/fusioncharts.theme.fusion.js');
-
-  // Use `app.import` to add additional libraries to the generated
-  // output files.
-  //
-  // If you need to use different assets in different
-  // environments, specify an object as the first parameter. That
-  // object's keys should be the environment name and the values
-  // should be the asset to use in that environment.
-  //
-  // If the library that you are including contains AMD or ES6
-  // modules that you would like to import into your application
-  // please specify an object with the list of modules as keys
-  // along with the exports of each module as its value.
-
-  return app.toTree();
+ENV['ember-fusioncharts'] = {
+  libraries: [
+    'charts',
+  ],
+  themes: [
+    'fusion',
+  ]
 };
 ```
 

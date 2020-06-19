@@ -47,5 +47,10 @@ module.exports = function(environment) {
     // here you can enable a production-specific feature
   }
 
+  ENV['ember-fusiontable'] = {
+    libraries: ['charts', 'timeseries'],
+    themes: ['fint', 'ocean']
+  }
+
   return ENV;
 };

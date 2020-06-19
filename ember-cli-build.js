@@ -8,13 +8,6 @@ module.exports = function(defaults) {
         // Add options here
     });
 
-    // Import FusionCharts library
-    app.import('node_modules/fusioncharts/fusioncharts.js');
-    app.import('node_modules/fusioncharts/fusioncharts.charts.js');
-    app.import('node_modules/fusioncharts/fusioncharts.timeseries.js');
-    app.import('node_modules/fusioncharts/themes/fusioncharts.theme.fint.js');
-    app.import('node_modules/fusioncharts/themes/fusioncharts.theme.ocean.js');
-
     /*
       This build file specifies the options for the dummy test app of this
       addon, located in `/tests/dummy`
