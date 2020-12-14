@@ -1,7 +1,7 @@
 {
   "name": "ember-fusioncharts",
-  "version": "2.0.1",
-  "description": "A lightweight EmberJS component which provides bindings for FusionCharts JavaScript Charting Library",
+  "version": "2.1.0",
+  "description": "A lightweight Ember component for FusionCharts JavaScript Charting Library",
   "keywords": [
     "ember-addon",
     "fusioncharts",
@@ -14,18 +14,6 @@
     "name": "FusionCharts",
     "email": "support@fusioncharts.com"
   },
-  "contributors": [
-    {
-      "name": "Rousan Ali",
-      "email": "rousan@fusioncharts.com",
-      "url": "https://github.com/ariyankhan"
-    },
-    {
-      "name": "Subrata Mal",
-      "email": "subrata@fusioncharts.com",
-      "url": "https://github.com/subratamal"
-    }
-  ],
   "directories": {
     "doc": "doc",
     "test": "tests"
