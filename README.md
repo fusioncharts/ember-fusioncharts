@@ -1,4 +1,4 @@
-# Ember-FusionCharts
+# ember-fusioncharts
 
 A lightweight EmberJS component which provides bindings for FusionCharts JavaScript Charting Library. It easily adds rich and interactive charts to any ambitious Ember application.
 
@@ -26,6 +26,14 @@ A lightweight EmberJS component which provides bindings for FusionCharts JavaScr
 - [Usage and Integration of FusionTime](#usage-and-integration-of-fusiontime)
 - [For Contributors](#for-contributors)
 - [Licensing](#licensing)
+
+## Compatibility
+
+- Ember.js v3.19 or above
+- Ember CLI v3.19 or above
+- Node.js 14 || 16 || 18 or above
+
+## Installation
 
 ## Getting Started
 
@@ -66,32 +74,26 @@ Then import `fusioncharts` library to your `ember-cli-build.js` build file:
 
 ```javascript
 /* eslint-env node */
-'use strict';
+"use strict";
 
-const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const EmberAddon = require("ember-cli/lib/broccoli/ember-addon");
 
-module.exports = function(defaults) {
-  let app = new EmberApp(defaults, {
+module.exports = function (defaults) {
+  let app = new EmberAddon(defaults, {
     // Add options here
   });
 
-  // Import fusioncharts library
-  app.import('node_modules/fusioncharts/fusioncharts.js');
-  app.import('node_modules/fusioncharts/fusioncharts.charts.js');
-  app.import('node_modules/fusioncharts/themes/fusioncharts.theme.fusion.js');
+  // Import FusionCharts library
+  app.import("node_modules/fusioncharts/fusioncharts.js");
+  app.import("node_modules/fusioncharts/fusioncharts.charts.js");
+  app.import("node_modules/fusioncharts/themes/fusioncharts.theme.fusion.js");
 
-  // Use `app.import` to add additional libraries to the generated
-  // output files.
-  //
-  // If you need to use different assets in different
-  // environments, specify an object as the first parameter. That
-  // object's keys should be the environment name and the values
-  // should be the asset to use in that environment.
-  //
-  // If the library that you are including contains AMD or ES6
-  // modules that you would like to import into your application
-  // please specify an object with the list of modules as keys
-  // along with the exports of each module as its value.
+  /*
+      This build file specifies the options for the dummy test app of this
+      addon, located in `/tests/dummy`
+      This build file does *not* influence how the addon or the app using it
+      behave. You most likely want to be modifying `./index.js` or app's build file
+    */
 
   return app.toTree();
 };
@@ -108,47 +110,51 @@ $ ember g component chart-viewer
 Write your chart logic in `chart-viewer.js` file:
 
 ```javascript
-import Component from '@ember/component';
+import Component from "@glimmer/component";
+import { tracked } from "@glimmer/tracking";
 
 const myDataSource = {
   chart: {
     caption: "Harry's SuperMart",
-    subCaption: 'Top 5 stores in last month by revenue',
-    numberPrefix: '$',
-    theme: 'fint'
+    subCaption: "Top 5 stores in last month by revenue",
+    numberPrefix: "$",
+    theme: "fint",
   },
   data: [
     {
-      label: 'Bakersfield Central',
-      value: '880000'
+      label: "Bakersfield Central",
+      value: "880000",
     },
     {
-      label: 'Garden Groove harbour',
-      value: '730000'
+      label: "Garden Groove harbour",
+      value: "730000",
     },
     {
-      label: 'Los Angeles Topanga',
-      value: '590000'
+      label: "Los Angeles Topanga",
+      value: "590000",
     },
     {
-      label: 'Compton-Rancho Dom',
-      value: '520000'
+      label: "Compton-Rancho Dom",
+      value: "520000",
     },
     {
-      label: 'Daly City Serramonte',
-      value: '330000'
-    }
-  ]
+      label: "Daly City Serramonte",
+      value: "330000",
+    },
+  ],
 };
 
-export default Component.extend({
-  title: 'Ember FusionCharts Sample',
-  width: 600,
-  height: 400,
-  type: 'column2d',
-  dataFormat: 'json',
-  dataSource: myDataSource
-});
+export default class ChartViewerComponent extends Component {
+  @tracked title = "FusionCharts Example";
+  @tracked width = 600;
+  @tracked height = 400;
+  @tracked type = "column2d";
+  @tracked dataFormat = "json";
+  @tracked dataSource = myDataSource;
+  @tracked chartConfig = null;
+  @tracked events = null;
+  @tracked actualValue = "";
+}
 ```
 
 And use `fusioncharts-xt` component in your `chart-viewer.hbs` template to show your charts:
@@ -156,8 +162,8 @@ And use `fusioncharts-xt` component in your `chart-viewer.hbs` template to show 
 ```html
 <h1>{{ title }}</h1>
 
-{{fusioncharts-xt width=width height=height type=type dataFormat=dataFormat
-dataSource=dataSource}}
+{{fusioncharts-xt width=this.width height=this.height type=this.type
+dataFormat=this.dataFormat dataSource=this.dataSource}}
 ```
 
 Then, use `chart-viewer` component in your `application.hbs` template:
@@ -171,91 +177,95 @@ Then, use `chart-viewer` component in your `application.hbs` template:
 In your component file:
 
 ```javascript
-import Component from '@ember/component';
-
-export default Component.extend({
-  width: 600,
-  height: 400,
-  type: 'column2d',
-  dataFormat: 'json',
-  dataSource: {
-    chart: {
-      caption: 'Countries With Most Oil Reserves [2017-18]',
-      subCaption: 'In MMbbl = One Million barrels',
-      xAxisName: 'Country',
-      yAxisName: 'Reserves (MMbbl)',
-      numberSuffix: 'K',
-      theme: 'fusion'
-    },
-    data: [
-      {
-        label: 'Venezuela',
-        value: '290'
-      },
-      {
-        label: 'Saudi',
-        value: '260'
-      },
-      {
-        label: 'Canada',
-        value: '180'
-      },
-      {
-        label: 'Iran',
-        value: '140'
-      },
-      {
-        label: 'Russia',
-        value: '115'
-      },
-      {
-        label: 'UAE',
-        value: '100'
-      },
-      {
-        label: 'US',
-        value: '30'
-      },
-      {
-        label: 'China',
-        value: '30'
-      }
-    ]
+import Component from "@glimmer/component";
+import { tracked } from "@glimmer/tracking";
+import { action } from "@ember/object";
+const dataSource = {
+  chart: {
+    caption: "Countries With Most Oil Reserves [2017-18]",
+    subCaption: "In MMbbl = One Million barrels",
+    xAxisName: "Country",
+    yAxisName: "Reserves (MMbbl)",
+    numberSuffix: "K",
+    theme: "fusion",
   },
-  events: null,
-  message: 'Hover on the plot to see the value along with the label',
-
-  init() {
-    this._super(...arguments);
-    const self = this;
-    this.set('events', {
-      dataplotRollOver: function(eventObj, dataObj) {
-        self.set(
-          'message',
-          'You are currently hovering over ' +
-            dataObj.categoryLabel +
-            ' whose value is ' +
-            dataObj.displayValue
-        );
-      },
-      dataPlotRollOut: function(eventObj, dataObj) {
-        self.set(
-          'message',
-          'Hover on the plot to see the value along with the label'
-        );
-      }
-    });
+  data: [
+    {
+      label: "Venezuela",
+      value: "290",
+    },
+    {
+      label: "Saudi",
+      value: "260",
+    },
+    {
+      label: "Canada",
+      value: "180",
+    },
+    {
+      label: "Iran",
+      value: "140",
+    },
+    {
+      label: "Russia",
+      value: "115",
+    },
+    {
+      label: "UAE",
+      value: "100",
+    },
+    {
+      label: "US",
+      value: "30",
+    },
+    {
+      label: "China",
+      value: "30",
+    },
+  ],
+};
+export default class FusionChartsViewers extends Component {
+  @tracked title = "FusionCharts Example";
+  @tracked width = 600;
+  @tracked height = 400;
+  @tracked type = "column2d";
+  @tracked dataFormat = "json";
+  @tracked dataSource = dataSource;
+  @tracked chartConfig = null;
+  @tracked events = null;
+  @tracked actualValue = "";
+  @tracked message = "Hover on the plot to see the value along with the label";
+  constructor() {
+    super(...arguments);
+    this.chartConfig = {
+      containerBackgroundColor: "#ffffff",
+    };
+    this.dataFormat = "json";
+    this.dataSource = dataSource; // Initializing the data source
+    this.events = {
+      dataplotRollOver: this.dataplotRollOver.bind(this),
+      dataPlotRollOut: this.dataPlotRollOut.bind(this),
+    };
   }
-});
+  @action
+  dataplotRollOver(eventObj, dataObj) {
+    this.message = `You are currently hovering over ${dataObj.categoryLabel} whose value is ${dataObj.displayValue}`;
+  }
+
+  @action
+  dataPlotRollOut(eventObj, dataObj) {
+    this.message = "Hover on the plot to see the value along with the label";
+  }
+}
 ```
 
 In your template file:
 
 ```html
-{{fusioncharts-xt width=width height=height type=type dataFormat=dataFormat
-dataSource=dataSource events=events}}
+{{ fusioncharts-xt width=this.width height=this.height type=this.type
+dataFormat=this.dataFormat dataSource=this.dataSource events=this.events }}
 
-<p>{{ message }}</p>
+<p>{{ this.message }}</p>
 ```
 
 Using this example when you hover on a dataplot you will get to see the value and label of the dataplot underneath the chart.
@@ -267,8 +277,8 @@ To attach event listeners to FusionCharts, you can use the `events` attribute in
 In your template file:
 
 ```html
-{{fusioncharts-xt width=width height=height type=type dataFormat=dataFormat
-dataSource=dataSource events=events}}
+{{ fusioncharts-xt width=this.width height=this.height type=this.type
+dataFormat=this.dataFormat dataSource=this.dataSource events=this.events }}
 ```
 
 ## Usage and integration of FusionTime
@@ -281,31 +291,25 @@ import `FusionTime` library to your `ember-cli-build.js` build file:
 
 ```javascript
 /* eslint-env node */
-'use strict';
+"use strict";
 
-const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const EmberAddon = require("ember-cli/lib/broccoli/ember-addon");
 
-module.exports = function(defaults) {
-  let app = new EmberApp(defaults, {
+module.exports = function (defaults) {
+  let app = new EmberAddon(defaults, {
     // Add options here
   });
 
-  // Import fusioncharts library
-  app.import('node_modules/fusioncharts/fusioncharts.js');
-  app.import('node_modules/fusioncharts/fusioncharts.timeseries.js');
+  // Import FusionCharts library
+  app.import("node_modules/fusioncharts/fusioncharts.js");
+  app.import("node_modules/fusioncharts/fusioncharts.timeseries.js");
 
-  // Use `app.import` to add additional libraries to the generated
-  // output files.
-  //
-  // If you need to use different assets in different
-  // environments, specify an object as the first parameter. That
-  // object's keys should be the environment name and the values
-  // should be the asset to use in that environment.
-  //
-  // If the library that you are including contains AMD or ES6
-  // modules that you would like to import into your application
-  // please specify an object with the list of modules as keys
-  // along with the exports of each module as its value.
+  /*
+      This build file specifies the options for the dummy test app of this
+      addon, located in `/tests/dummy`
+      This build file does *not* influence how the addon or the app using it
+      behave. You most likely want to be modifying `./index.js` or app's build file
+    */
 
   return app.toTree();
 };
@@ -320,54 +324,58 @@ $ ember g component chart-viewer
 Write your chart logic in `timeseries-viewer.js` file:
 
 ```javascript
-import Component from '@ember/component';
+import Component from "@glimmer/component";
+import { tracked } from "@glimmer/tracking";
 
+// Data source template
 const dataSource = {
   data: null,
   caption: {
-    text: 'Sales Analysis'
+    text: "Sales Analysis",
   },
   subcaption: {
-    text: 'Grocery & Footwear'
+    text: "Grocery & Footwear",
   },
-  series: 'Type',
+  series: "Type",
   yAxis: [
     {
-      plot: 'Sales Value',
-      title: 'Sale Value',
+      plot: "Sales Value",
+      title: "Sale Value",
       format: {
-        prefix: '$'
-      }
-    }
-  ]
+        prefix: "$",
+      },
+    },
+  ],
 };
 
-const jsonify = res => res.json();
-// This is the remote url to fetch the data.
+// Function to fetch and parse JSON
+const jsonify = (res) => res.json();
+
+// Fetch data and schema
 const dataFetch = fetch(
-  'https://s3.eu-central-1.amazonaws.com/fusion.store/ft/data/plotting-multiple-series-on-time-axis-data.json'
+  "https://s3.eu-central-1.amazonaws.com/fusion.store/ft/data/plotting-multiple-series-on-time-axis-data.json",
 ).then(jsonify);
+
 const schemaFetch = fetch(
-  'https://s3.eu-central-1.amazonaws.com/fusion.store/ft/schema/plotting-multiple-series-on-time-axis-schema.json'
+  "https://s3.eu-central-1.amazonaws.com/fusion.store/ft/schema/plotting-multiple-series-on-time-axis-schema.json",
 ).then(jsonify);
 
-export default Component.extend({
-  title: 'TimeSeries Example',
-  width: 600,
-  height: 400,
-  type: 'timeseries',
-  dataFormat: null,
-  dataSource: null,
-  // timeSeriesDS: null,
+export default class timeSeriesViewer extends Component {
+  @tracked title = "TimeSeries Example";
+  @tracked width = 600;
+  @tracked height = 400;
+  @tracked type = "timeseries";
+  @tracked dataFormat = null;
+  @tracked dataSource = null;
 
-  init() {
-    this._super(...arguments);
-    this.set('dataFormat', 'json');
+  constructor() {
+    super(...arguments);
+    this.dataFormat = "json";
     this.createDataTable();
-  },
+  }
 
   createDataTable() {
-    Promise.all([dataFetch, schemaFetch]).then(res => {
+    Promise.all([dataFetch, schemaFetch]).then((res) => {
       const data = res[0];
       const schema = res[1];
       // First we are creating a DataStore
@@ -377,10 +385,10 @@ export default Component.extend({
       // Afet that we simply mutated our timeseries datasource by attaching the above
       // DataTable into its data property.
       dataSource.data = fusionDataTable;
-      this.set('dataSource', dataSource);
+      this.dataSource = dataSource;
     });
   }
-});
+}
 ```
 
 And use `fusioncharts-xt` component in your `timeseries-viewer.hbs` template to show your charts:
@@ -388,8 +396,8 @@ And use `fusioncharts-xt` component in your `timeseries-viewer.hbs` template to 
 ```html
 <h1>{{ title }}</h1>
 
-{{fusioncharts-xt width=width height=height type=type dataFormat=dataFormat
-dataSource=dataSource}}
+{{ fusioncharts-xt width=this.width height=this.height type=this.type
+dataFormat=this.dataFormat dataSource=this.dataSource }}
 ```
 
 Then, use `timeseries-viewer` component in your `application.hbs` template:
@@ -413,7 +421,7 @@ Then, use `timeseries-viewer` component in your `application.hbs` template:
 ```sh
 $ git clone https://github.com/fusioncharts/ember-fusioncharts.git
 $ cd ember-fusioncharts
-$ npm i && bower install
+$ npm i
 $ npm start
 ```
 
