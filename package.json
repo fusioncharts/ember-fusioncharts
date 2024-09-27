@@ -104,7 +104,7 @@
     "ember-source": ">= 3.19.0 <= 5.11.0"
   },
   "engines": {
-    "node": "14.* || 16.* || >= 18"
+    "node": "14.* || 16.* || >= 18.*"
   },
   "ember": {
     "edition": "octane"
