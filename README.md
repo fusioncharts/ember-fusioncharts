@@ -29,9 +29,9 @@ A lightweight EmberJS component which provides bindings for FusionCharts JavaScr
 
 ## Compatibility
 
-- Ember.js v3.19 or above
-- Ember CLI v3.19 or above
-- Node.js 14 || 16 || 18 or above
+- Ember.js v4.0 or above
+- Ember CLI v4.0 or above
+- Node.js >= 14.15 || 16 || 18 or above
 
 ## Installation
 
