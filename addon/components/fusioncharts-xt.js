@@ -1,38 +1,38 @@
 import Component from '@ember/component';
 import layout from '../templates/components/fusioncharts-xt';
+import { tracked } from '@glimmer/tracking';
 import * as utils from '../utils/utils';
 import { fusonChartsOptions } from '../utils/options';
-
-export default Component.extend({
-    layout,
-    chartObj: null,
-    oldOptions: null,
-    chartContainer: null,
+export default class FusionChartXt extends Component {
+    layout = layout;
+    @tracked chartObj = null;
+    @tracked oldOptions = null;
+    @tracked chartContainer = null;
 
     init() {
-        this._super(...arguments);
-        this.set('oldOptions', this.getCurrentOptions());
-    },
+        super.init(...arguments);
+        this.oldOptions = this.getCurrentOptions();
+    }
 
     didReceiveAttrs() {
         this._super(...arguments);
         this.detectChanges();
-    },
+    }
 
     didInsertElement() {
         this._super(...arguments);
         this.resolveChartContainer();
         this.renderChart();
-    },
+    }
 
     willDestroyElement() {
         this._super(...arguments);
-        this.get('chartObj').dispose();
-    },
+        this.chartObj.dispose();
+    }
 
     detectChanges() {
         const currentOptions = this.getCurrentOptions();
-        const oldOptions = this.get('oldOptions');
+        const oldOptions = this.oldOptions;
         const optionsUpdatedNatively = [
             'width',
             'height',
@@ -54,8 +54,8 @@ export default Component.extend({
             oldOptions
         );
 
-        this.set('oldOptions', currentOptions);
-    },
+        this.oldOptions = currentOptions;
+    }
 
     checkAndUpdateChartDimensions(currentOptions, oldOptions) {
         const currWidth = currentOptions.width;
@@ -63,7 +63,7 @@ export default Component.extend({
         const oldWidth = oldOptions.width;
         const oldHeight = oldOptions.height;
 
-        const chartObj = this.get('chartObj');
+        const chartObj = this.chartObj;
 
         if (
             String(currWidth) !== String(oldWidth) ||
@@ -87,7 +87,7 @@ export default Component.extend({
                 }
             }
         }
-    },
+    }
 
     checkAndUpdateChartType(currentOptions, oldOptions) {
         const currType = currentOptions.type;
@@ -95,10 +95,10 @@ export default Component.extend({
 
         if (String(currType).toLowerCase() !== String(oldType).toLowerCase()) {
             if (!utils.isUndefined(currType)) {
-                this.get('chartObj').chartType(String(currType).toLowerCase());
+                this.chartObj.chartType(String(currType).toLowerCase());
             }
         }
-    },
+    }
 
     checkAndUpdateChartData(currentOptions, oldOptions) {
         const currDataFormat = currentOptions.dataFormat;
@@ -106,7 +106,7 @@ export default Component.extend({
         const oldDataFormat = oldOptions.dataFormat;
         const oldData = oldOptions.dataSource;
 
-        const chartObj = this.get('chartObj');
+        const chartObj = this.chartObj;
 
         if (
             String(currDataFormat).toLowerCase() !==
@@ -136,7 +136,7 @@ export default Component.extend({
                 );
             }
         }
-    },
+    }
 
     isSameChartData(currData, oldData) {
         // if (utils.isObject(currData) && utils.isObject(oldData)) {
@@ -170,14 +170,14 @@ export default Component.extend({
             utils.cloneDataSource(currData, 'diff')
         );
         return oldDataStringified === currentDataStringified;
-    },
+    }
 
     checkAndUpdateEvents(currentOptions, oldOptions) {
         const currEvents = currentOptions.events;
         const oldEvents = oldOptions.events;
         let temp1, temp2;
 
-        const chartObj = this.get('chartObj');
+        const chartObj = this.chartObj;
 
         if (this.detectChartEventsChange(currEvents, oldEvents)) {
             if (!utils.isUndefined(currEvents)) {
@@ -202,7 +202,7 @@ export default Component.extend({
                 });
             }
         }
-    },
+    }
 
     detectChartEventsChange(currEvents, oldEvents) {
         if (utils.isObject(currEvents) && utils.isObject(oldEvents)) {
@@ -210,7 +210,7 @@ export default Component.extend({
         } else {
             return !(currEvents === oldEvents);
         }
-    },
+    }
 
     isSameChartEvents(currEvents, oldEvents) {
         if (Object.keys(currEvents).length !== Object.keys(oldEvents).length) {
@@ -224,11 +224,11 @@ export default Component.extend({
             }
         }
         return true;
-    },
+    }
 
     checkAndUpdateRestOptions(restOptions, currentOptions, oldOptions) {
         let optionsUpdated = false;
-        const chartObj = this.get('chartObj');
+        const chartObj = this.chartObj;
 
         restOptions.forEach(optionName => {
             const currValue = currentOptions[optionName];
@@ -248,7 +248,7 @@ export default Component.extend({
         if (optionsUpdated) {
             chartObj.render(); // re-render the chart to reflect the changes
         }
-    },
+    }
 
     isSameOptionValue(currValue, oldValue) {
         if (utils.isObject(currValue) && utils.isObject(oldValue)) {
@@ -256,24 +256,24 @@ export default Component.extend({
         } else {
             return String(currValue) === String(oldValue);
         }
-    },
+    }
 
     resolveChartContainer() {
-        this.set('chartContainer', this.$('div').get(0));
-    },
+        this.chartContainer = this.element.querySelector('div');
+    }
 
     renderChart() {
         const currentOptions = this.getCurrentOptions();
-        currentOptions.renderAt = this.get('chartContainer');
+        currentOptions.renderAt = this.chartContainer;
 
         const chartObj = this.newFusionChartsInstance(currentOptions);
-        this.set('chartObj', chartObj);
+        this.chartObj = chartObj;
         chartObj.render();
-    },
+    }
 
     getCurrentOptions() {
-        const chartConfig = this.get('chartConfig')
-            ? this.get('chartConfig')
+        const chartConfig = this.chartConfig
+            ? this.chartConfig
             : {};
         const inlineOptions = fusonChartsOptions.reduce(
             (options, optionName) => {
@@ -310,16 +310,16 @@ export default Component.extend({
             );
         }
         return inlineOptions;
-    },
+    }
 
     newFusionChartsInstance(chartConfig) {
         const fcCore = this.getFusionChartsCore();
         return new fcCore(chartConfig);
-    },
+    }
 
     getFusionChartsCore() {
         // The root application has to import
         // the FusionCharts library globally.
         return window.FusionCharts;
     }
-});
+};
