@@ -1,4 +1,6 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
 const dataSource = {
     chart: {
@@ -37,30 +39,28 @@ function getRandomNumber() {
     return Math.round((max - min) * Math.random() + min);
 }
 
-export default Component.extend({
-    title: 'FusionCharts Example',
-    width: 600,
-    height: 400,
-    type: 'column2d',
-    dataFormat: null,
-    dataSource: null,
-    chartConfig: null,
-    events: null,
-    actualValue: '',
+export default class FusionChartsViewers extends Component {
+    @tracked title = 'FusionCharts Example';
+    @tracked width = 600;
+    @tracked height = 400;
+    @tracked type = 'column2d';
+    @tracked dataFormat = null;
+    @tracked dataSource = null;
+    @tracked chartConfig = null;
+    @tracked events = null;
+    @tracked actualValue = '';
 
-    init() {
-        this._super(...arguments);
-
-        this.set('chartConfig', {
+    constructor() {
+        super(...arguments);
+        this.chartConfig = {
             containerBackgroundColor: '#ffffff'
-        });
-        this.set('dataFormat', 'json');
+        };
+        this.dataFormat = 'json';
+        this.dataSource = dataSource;
+    }
 
-        this.set('dataSource', dataSource);
-    },
-
-    actions: {
-        onClick: function() {
+    @action
+    onClick() {
             // this.set('dataFormat', 'xml');
             // const newDataSource = `<chart caption="Top 10 Most Popular Sports in the World"
             // subcaption="Based on number of viewers" yaxisname="Number of Viewers" plotgradientcolor=""
@@ -81,11 +81,10 @@ export default Component.extend({
             // <set label="Basketball" value="400000000" tooltext="Popular in: {br}US{br}Canada" />
             // <set label="American football" value="390000000" tooltext="Popular in:{br}US" />
             // </chart>`;
-            const prevDs = Object.assign({}, this.get('dataSource'));
-            prevDs.data[2].value = getRandomNumber();
-            prevDs.data[3].value = getRandomNumber();
-            prevDs.chart.caption = 'Changed';
-            this.set('dataSource', prevDs);
-        }
+        const prevDs = { ...this.dataSource };
+        prevDs.data[2].value = getRandomNumber();
+        prevDs.data[3].value = getRandomNumber();
+        prevDs.chart.caption = 'Changed';
+        this.dataSource = prevDs;
     }
-});
+}
