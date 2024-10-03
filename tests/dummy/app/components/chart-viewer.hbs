@@ -1,0 +1,16 @@
+<div>
+
+  <h1>{{ title }}</h1>
+
+  {{ fusioncharts-xt
+    width=this.width
+    height=this.height
+    type=this.type
+    dataFormat=this.dataFormat
+    dataSource=this.dataSource
+  }}
+
+  <p>Actual Value: {{ this.actualValue }}</p>
+
+  <button {{on "click" this.onClick}}>Change Chart</button>
+</div>

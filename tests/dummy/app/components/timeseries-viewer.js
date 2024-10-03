@@ -1,4 +1,6 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
 const dataSource = {
   data: null,
@@ -29,21 +31,20 @@ const schemaFetch = fetch(
   'https://s3.eu-central-1.amazonaws.com/fusion.store/ft/schema/plotting-multiple-series-on-time-axis-schema.json'
 ).then(jsonify);
 
-export default Component.extend({
-  title: 'TimeSeries Example',
-  width: 600,
-  height: 400,
-  type: 'timeseries',
-  dataFormat: null,
-  dataSource: null,
-  // timeSeriesDS: null,
+export default class timeSeriesViewer extends Component {
+  @tracked title = 'TimeSeries Example';
+  @tracked width = 600;
+  @tracked height = 400;
+  @tracked type = 'timeseries';
+  @tracked dataFormat = null;
+  @tracked dataSource = null;
 
-  init() {
-    this._super(...arguments);
-    this.set('dataFormat', 'json');
+  constructor() {
+    super(...arguments);
+    this.dataFormat = 'json';
     this.createDataTable();
-  },
-
+  }
+  
   createDataTable() {
     Promise.all([dataFetch, schemaFetch]).then(res => {
       const data = res[0];
@@ -55,15 +56,14 @@ export default Component.extend({
       // Afet that we simply mutated our timeseries datasource by attaching the above
       // DataTable into its data property.
       dataSource.data = fusionDataTable;
-      this.set('dataSource', dataSource);
+      this.dataSource = dataSource;
     });
-  },
-
-  actions: {
-    onClick: function() {
-      const prevDs = Object.assign({}, this.get('dataSource'));
-      prevDs.caption.text = 'Changed';
-      this.set('dataSource', prevDs);
-    }
   }
-});
+
+  @action
+  onClick() {
+    const prevDs = { ...this.dataSource };
+    prevDs.caption.text = 'Changed';
+    this.dataSource = prevDs;
+  }
+}
